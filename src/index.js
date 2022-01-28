@@ -1,11 +1,13 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import { HTML5Backend } from "react-dnd-html5-backend";
+import { DndProvider } from "react-dnd";
 import Routes from "./router";
 import "./common/antd.css";
 
 ReactDOM.render(
-  <React.StrictMode>
+  <DndProvider backend={HTML5Backend}>
     <Routes />
-  </React.StrictMode>,
+  </DndProvider>,
   document.getElementById("root")
 );
