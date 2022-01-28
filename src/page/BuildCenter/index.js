@@ -1,7 +1,18 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import KitchenCanvas from "../../kitchen-canvas";
+import KitchenComponent from "../../kitchen-component";
+import KitchenConfig from "../../kitchen-config-center";
+import * as SC from "./style";
+import { observer } from "mobx-react-lite";
 
 function BuildCenter() {
-  return <div>buildCenter</div>;
+  return (
+    <SC.BuildCenter>
+      <KitchenComponent />
+      <KitchenCanvas />
+      <KitchenConfig />
+    </SC.BuildCenter>
+  );
 }
 
-export default BuildCenter;
+export default observer(BuildCenter);
