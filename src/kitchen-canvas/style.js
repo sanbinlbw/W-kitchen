@@ -4,6 +4,7 @@ export const Canvas = styled.div`
   height: 88vh;
   background: #fff;
   box-shadow: 0 0 10px 0 rgb(0 0 0 / 10%);
+  overflow-y: auto;
 `;
 
 export const CanvasTips = styled.div`
@@ -18,7 +19,6 @@ export const CanvasTips = styled.div`
 
 export const CanvasComponent = styled.div`
   border: 1px solid #fff;
-  margin-bottom: 15px;
   &:hover {
     border: 1px dashed #155bd4;
   }

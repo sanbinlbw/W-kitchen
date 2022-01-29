@@ -1,30 +1,32 @@
 import React from "react";
 import { Carousel } from "antd";
+import { store } from "../../mobx";
+import { observer } from "mobx-react-lite";
+import { toJS } from "mobx";
 
-const contentStyle = {
-  height: "160px",
-  color: "#fff",
-  lineHeight: "160px",
-  textAlign: "center",
-  background: "#364d79",
-};
 function WBanner() {
+  console.log(store.pageConfig[store.currentId]);
+  const {
+    contentStyle = {
+      height: "160px",
+      color: "#fff",
+      lineHeight: "160px",
+      textAlign: "center",
+      background: "#364d79",
+    },
+    imgList = [1, 2, 3],
+  } = toJS(store.pageConfig[store.currentId]);
   return (
     <Carousel autoplay>
-      <div>
-        <h3 style={contentStyle}>1</h3>
-      </div>
-      <div>
-        <h3 style={contentStyle}>2</h3>
-      </div>
-      <div>
-        <h3 style={contentStyle}>3</h3>
-      </div>
-      <div>
-        <h3 style={contentStyle}>4</h3>
-      </div>
+      {imgList.map((item, index) => {
+        return (
+          <div key={index}>
+            <h3 style={contentStyle}>{item}</h3>
+          </div>
+        );
+      })}
     </Carousel>
   );
 }
 
-export default WBanner;
+export default observer(WBanner);
