@@ -1,12 +1,12 @@
 import React from "react";
 import { Carousel } from "antd";
-import { store } from "../../mobx";
-import { observer } from "mobx-react-lite";
 import { toJS } from "mobx";
 
-function WBanner() {
-  console.log(store.pageConfig[store.currentId]);
+function WBanner(props) {
   const {
+    imgList = [1, 2],
+    dotPosition = "bottom",
+    auto = true,
     contentStyle = {
       height: "160px",
       color: "#fff",
@@ -14,10 +14,15 @@ function WBanner() {
       textAlign: "center",
       background: "#364d79",
     },
-    imgList = [1, 2, 3],
-  } = toJS(store.pageConfig[store.currentId]);
+    marginTop = 0,
+    marginBottom = 0,
+  } = toJS(props);
   return (
-    <Carousel autoplay>
+    <Carousel
+      dotPosition={dotPosition}
+      autoplay={auto}
+      style={{ marginTop, marginBottom }}
+    >
       {imgList.map((item, index) => {
         return (
           <div key={index}>
@@ -29,4 +34,4 @@ function WBanner() {
   );
 }
 
-export default observer(WBanner);
+export default WBanner;

@@ -22,7 +22,7 @@ export const componentList = [
     name: "W-Banner",
     icon: <OneToOneOutlined />,
     title: "轮播图",
-    component: <WBanner />,
+    component: (props = {}) => <WBanner {...props} />,
     config: BannerConfig,
   },
   {

@@ -24,6 +24,11 @@ export const CanvasComponent = styled.div`
   }
 `;
 
+export const ActiveComponent = styled.div`
+  position: relative;
+  border: 1px dashed #155bd4;
+`;
+
 export const DropTips = styled.div`
   height: 80px;
   line-height: 80px;
