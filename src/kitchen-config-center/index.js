@@ -1,14 +1,26 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { store } from "../mobx";
+import { reaction } from "mobx";
 import { observer } from "mobx-react-lite";
 import * as SC from "./style";
 import { configComponent } from "../config/config-component";
 
 function KitchenConfig() {
+  const [config, setConfig] = useState(store.pageConfig[store.currentId]);
+
+  // 配置更新后，更新mobx里的组件与配置
+  useEffect(() => {
+    reaction(
+      () => store.currentId,
+      (currentId, oldCurrentId, reaction) => {
+        setConfig(store.pageConfig[currentId]);
+        console.log(store.pageConfig[currentId]);
+      }
+    );
+  }, []);
   const renderCenter = () => {
-    console.log(store.currentId);
     return store.currentId >= 0 ? (
-      configComponent(store.pageConfig[store.currentId])
+      configComponent(config, setConfig)
     ) : (
       <SC.ConfigTips>请选择组件</SC.ConfigTips>
     );

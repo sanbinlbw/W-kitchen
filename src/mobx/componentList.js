@@ -3,13 +3,16 @@ import {
   OneToOneOutlined,
   MinusSquareOutlined,
   GoldOutlined,
+  ColumnHeightOutlined,
 } from "@ant-design/icons";
 
-import WInput from "../kitchen-component/W-Input";
+// import WInput from "../kitchen-component/W-Input";
 import WTable from "../kitchen-component/W-Table";
 import WBanner from "../kitchen-component/W-Banner";
+import WDivider from "../kitchen-component/W-Divider";
 
 import BannerConfig from "../kitchen-config-center/W-Banner/config";
+import DividerConfig from "../kitchen-config-center/W-Divider/config";
 
 export const componentList = [
   {
@@ -26,10 +29,17 @@ export const componentList = [
     config: BannerConfig,
   },
   {
+    name: "W-Divider",
+    icon: <ColumnHeightOutlined />,
+    title: "分割线",
+    component: (props = {}) => <WDivider {...props} />,
+    config: DividerConfig,
+  },
+  {
     name: "W-Input",
     icon: <MinusSquareOutlined />,
     title: "输入框",
-    component: <WInput />,
+    // component: <WInput />,
   },
   {
     name: "W-Button",

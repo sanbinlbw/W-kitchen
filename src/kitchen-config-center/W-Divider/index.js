@@ -1,25 +1,19 @@
 import React, { useState, useEffect } from "react";
-import { Divider, Radio, Switch, Slider } from "antd";
+import { Divider, Space, Radio, Slider, Input } from "antd";
+import { ChromePicker } from "react-color";
 
 import { store } from "../../mobx";
 import { observer } from "mobx-react-lite";
 import * as SC from "../common/style";
 
-function BannerConfig(props) {
+function DividerConfig(props) {
   const { config, setConfig } = props;
+  const [isColor, setIsColor] = useState(false);
   const updateComponent = (newConfig) => {
     setConfig({
       ...config,
       ...newConfig,
     });
-  };
-
-  const handleValue = ({ target: { value } }) => {
-    updateComponent({ dotPosition: value });
-  };
-
-  const changeAuto = (checked) => {
-    updateComponent({ auto: checked });
   };
 
   const changeTop = (value) => {
@@ -30,18 +24,32 @@ function BannerConfig(props) {
     updateComponent({ marginBottom: value });
   };
 
+  const changeContent = (el) => {
+    updateComponent({ content: el.target.value });
+  };
+
+  const changeFontColor = (color) => {
+    updateComponent({ color: color.hex });
+  };
+
+  const changeFontPosition = ({ target: { value } }) => {
+    updateComponent({ orientation: value });
+  };
+
   const baseRender = () => {
     return (
       <div>
         <Divider orientation="left">基本布局</Divider>
         <SC.Content>
           <SC.Item>
-            <SC.Title>按钮方向:</SC.Title>
-            <Radio.Group onChange={handleValue} value={config.dotPosition}>
-              <Radio.Button value="top">上</Radio.Button>
-              <Radio.Button value="bottom">下</Radio.Button>
-              <Radio.Button value="left">左</Radio.Button>
-              <Radio.Button value="right">右</Radio.Button>
+            <SC.Title>文字位置:</SC.Title>
+            <Radio.Group
+              onChange={changeFontPosition}
+              value={config.orientation}
+            >
+              <Radio.Button value="left">居左</Radio.Button>
+              <Radio.Button value="center">居中</Radio.Button>
+              <Radio.Button value="right">居右</Radio.Button>
             </Radio.Group>
           </SC.Item>
           <SC.Item>
@@ -56,8 +64,24 @@ function BannerConfig(props) {
         <Divider orientation="left">基本功能</Divider>
         <SC.Content>
           <SC.Item>
-            <SC.Title>自动播放:</SC.Title>
-            <Switch defaultChecked={config.auto} onChange={changeAuto} />
+            <SC.Title>内容:</SC.Title>
+            <Input
+              placeholder={config.content}
+              onChange={changeContent}
+              style={{ width: "75%" }}
+            />
+          </SC.Item>
+          <SC.Item>
+            <SC.Title>字体颜色:</SC.Title>
+            <SC.Color
+              color={config.color}
+              onClick={() => setIsColor(!isColor)}
+            />
+            {isColor && (
+              <div style={{ position: "absolute", zIndex: 1 }}>
+                <ChromePicker color={config.color} onChange={changeFontColor} />
+              </div>
+            )}
           </SC.Item>
         </SC.Content>
       </div>
@@ -76,4 +100,4 @@ function BannerConfig(props) {
   return <div>{baseRender()}</div>;
 }
 
-export default observer(BannerConfig);
+export default observer(DividerConfig);
