@@ -12,7 +12,7 @@ function KitchenConfig() {
   useEffect(() => {
     reaction(
       () => store.currentId,
-      (currentId, oldCurrentId, reaction) => {
+      (currentId) => {
         setConfig(store.pageConfig[currentId]);
         console.log(store.pageConfig[currentId]);
       }

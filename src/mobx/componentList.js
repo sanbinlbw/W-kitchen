@@ -11,6 +11,7 @@ import WTable from "../kitchen-component/W-Table";
 import WBanner from "../kitchen-component/W-Banner";
 import WDivider from "../kitchen-component/W-Divider";
 
+import TableConfig from "../kitchen-config-center/W-Table/config";
 import BannerConfig from "../kitchen-config-center/W-Banner/config";
 import DividerConfig from "../kitchen-config-center/W-Divider/config";
 
@@ -19,7 +20,8 @@ export const componentList = [
     name: "W-Table",
     icon: <TableOutlined />,
     title: "表格",
-    // component: <WTable />,
+    component: (props = {}) => <WTable {...props} />,
+    config: TableConfig,
   },
   {
     name: "W-Banner",

@@ -5,7 +5,7 @@ import { observer } from "mobx-react-lite";
 import { useDrag } from "react-dnd";
 
 function ItemRender(item, index) {
-  const [{ isDragging }, drag, dragPreview] = useDrag(() => ({
+  const [{ isDragging }, drag] = useDrag(() => ({
     type: "component",
     item: { id: index },
     collect: (monitor) => ({
