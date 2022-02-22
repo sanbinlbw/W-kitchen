@@ -3,6 +3,7 @@ import styled from "styled-components";
 export const Canvas = styled.div`
   height: 88vh;
   background: #fff;
+  padding: 30px;
   box-shadow: 0 0 10px 0 rgb(0 0 0 / 10%);
   overflow-y: auto;
 `;

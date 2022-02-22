@@ -62,9 +62,9 @@ function TableConfig(props) {
     updateComponent({ columns: newColumns, data: newData });
   };
 
-  const deleteData = (index) => {
-    const newData = config.data.slice();
-    newData.splice(index, 1);
+  const deleteData = (key) => {
+    const newData = config.data.filter((item) => item.key !== key);
+
     updateComponent({ data: newData });
   };
 
@@ -180,8 +180,8 @@ function TableConfig(props) {
               return (
                 <Tag
                   closable
-                  onClose={() => deleteData(index)}
-                  key={index}
+                  onClose={() => deleteData(item.key)}
+                  key={item.key}
                   color="blue"
                   style={{ cursor: "pointer", marginBottom: "10px" }}
                   onClick={() => showDataDialog(item)}
