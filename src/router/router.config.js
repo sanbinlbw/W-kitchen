@@ -3,6 +3,7 @@ import Stencil from "../page/Stencil";
 import BuildCenter from "../page/BuildCenter";
 import MaterialSelect from "../page/MaterialSelect";
 import PageLibrary from "../page/PageLibrary";
+import ShowPage from "../RenderPage/ShowPage";
 
 export const routesMap = [
   {
@@ -30,5 +31,10 @@ export const routesMap = [
         exact: true,
       },
     ],
+  },
+  {
+    path: "/showPage",
+    component: ShowPage,
+    childrenRoutes: [],
   },
 ];

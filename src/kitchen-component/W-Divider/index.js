@@ -5,16 +5,15 @@ import { toJS } from "mobx";
 function WDivider(props) {
   const {
     orientation = "left",
-    marginTop = 0,
-    marginBottom = 0,
     content = "text",
-    color = "#000",
+    style = {
+      marginTop: 0,
+      marginBottom: 0,
+      color: "#000",
+    },
   } = toJS(props);
   return (
-    <Divider
-      style={{ marginTop, marginBottom, color }}
-      orientation={orientation}
-    >
+    <Divider style={style} orientation={orientation}>
       {content}
     </Divider>
   );

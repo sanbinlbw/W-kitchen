@@ -19,6 +19,7 @@ export const CanvasTips = styled.div`
 `;
 
 export const CanvasComponent = styled.div`
+  display: inline-block;
   border: 1px solid #fff;
   &:hover {
     border: 1px dashed #155bd4;

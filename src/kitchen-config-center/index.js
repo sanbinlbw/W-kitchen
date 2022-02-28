@@ -6,24 +6,21 @@ import * as SC from "./style";
 import { configComponent } from "../config/config-component";
 
 function KitchenConfig() {
-  const [config, setConfig] = useState(store.pageConfig[store.currentId]);
+  // const [config, setConfig] = useState(store.pageConfig[store.currentId]);
 
   // 配置更新后，更新mobx里的组件与配置
-  useEffect(() => {
-    reaction(
-      () => store.currentId,
-      (currentId) => {
-        setConfig(store.pageConfig[currentId]);
-        console.log(store.pageConfig[currentId]);
-      }
-    );
-  }, []);
+  // useEffect(() => {
+  //   reaction(
+  //     () => store.currentId,
+  //     (currentId) => {
+  //       setConfig(store.pageConfig[currentId]);
+  //       console.log(store.pageConfig[currentId]);
+  //     }
+  //   );
+  // }, []);
   const renderCenter = () => {
-    return store.currentId >= 0 ? (
-      configComponent(config, setConfig)
-    ) : (
-      <SC.ConfigTips>请选择组件</SC.ConfigTips>
-    );
+    return;
+    <SC.ConfigTips>请选择组件</SC.ConfigTips>;
   };
   return <SC.ConfigCenter>{renderCenter()}</SC.ConfigCenter>;
 }
