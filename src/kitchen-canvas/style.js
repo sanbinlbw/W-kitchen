@@ -3,7 +3,6 @@ import styled from "styled-components";
 export const Canvas = styled.div`
   height: 88vh;
   background: #fff;
-  padding: 30px;
   box-shadow: 0 0 10px 0 rgb(0 0 0 / 10%);
   overflow-y: auto;
 `;
@@ -20,14 +19,12 @@ export const CanvasTips = styled.div`
 
 export const CanvasComponent = styled.div`
   display: inline-block;
-  border: 1px solid #fff;
-  &:hover {
-    border: 1px dashed #155bd4;
-  }
+  border: ${(props) =>
+    props.isHover ? "1px dashed #155bd4" : "1px solid #fff"};
 `;
 
 export const ActiveComponent = styled.div`
-  position: relative;
+  display: inline-block;
   border: 1px dashed #155bd4;
 `;
 

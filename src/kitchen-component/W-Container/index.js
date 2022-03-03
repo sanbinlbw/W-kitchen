@@ -1,14 +1,18 @@
 import React from "react";
 import { toJS } from "mobx";
 import RenderPage from "../../RenderPage";
+import Canvas from "../../kitchen-canvas/Canvas";
 
 function WContainer(props) {
-  const { style = {}, children = [] } = toJS(props);
-  console.log(children);
+  const { style = {}, children = [], isConfig = false } = toJS(props);
   return (
     <div style={style}>
       {children.map((item, index) => {
-        return <RenderPage config={item} key={index} />;
+        return !isConfig ? (
+          <RenderPage config={item} key={index} />
+        ) : (
+          <Canvas config={item} key={index} />
+        );
       })}
     </div>
   );

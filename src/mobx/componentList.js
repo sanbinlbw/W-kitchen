@@ -37,7 +37,6 @@ export const componentList = [
   {
     icon: <OneToOneOutlined />,
     title: "容器",
-    id: "0",
     config: {
       type: "W-Container",
       props: {},
@@ -47,7 +46,6 @@ export const componentList = [
   {
     icon: <ColumnHeightOutlined />,
     title: "分割线",
-    id: "1",
     config: {
       type: "W-Divider",
       props: {},
@@ -57,7 +55,6 @@ export const componentList = [
   {
     icon: <ProfileOutlined />,
     title: "文本",
-    id: "2",
     config: {
       type: "W-Text",
       props: {},
