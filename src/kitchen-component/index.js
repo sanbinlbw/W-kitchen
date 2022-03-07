@@ -1,13 +1,14 @@
 import React from "react";
 import * as SC from "./style";
 import { store } from "../mobx";
+import { toJS } from "mobx";
 import { observer } from "mobx-react-lite";
 import { useDrag } from "react-dnd";
 
 function ItemRender(item, index) {
-  const [{ isDragging }, drag] = useDrag(() => ({
+  const [{ isDragging, dropItem }, drag] = useDrag(() => ({
     type: "component",
-    item: { id: index },
+    item: { item },
     collect: (monitor) => ({
       isDragging: monitor.isDragging(),
     }),
@@ -23,7 +24,7 @@ function ItemRender(item, index) {
 function KitchenComponent() {
   return (
     <SC.Component>
-      {store.componentList.map((item, index) => {
+      {toJS(store.componentList).map((item, index) => {
         return ItemRender(item, index);
       })}
     </SC.Component>

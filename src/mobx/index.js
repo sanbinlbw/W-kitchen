@@ -3,61 +3,47 @@ import { componentList } from "./componentList";
 
 export const store = makeAutoObservable({
   componentList,
+  uniqueId: 1,
   currentComponent: "",
   activeComponent: "",
   schema: {
     type: "W-Container",
-    key: "root",
+    id: "root",
     props: {
       style: {
+        display: "inline-block",
         width: "calc(50vw - 2px)",
         height: "calc(88vh - 2px)",
+        background: "#fff",
+        overflowY: "auto",
       },
     },
-    children: [
-      {
-        type: "W-Container",
-        key: "container-1",
-        props: {
-          style: {
-            width: "100px",
-            height: "100px",
-            background: "pink",
-          },
-        },
-        children: [
-          {
-            type: "W-Container",
-            key: "container-2",
-            props: {
-              style: {
-                width: "50px",
-                height: "50px",
-                background: "red",
-              },
-            },
-            children: [
-              {
-                type: "W-Container",
-                key: "container-3",
-                props: {
-                  style: {
-                    width: "25px",
-                    height: "25px",
-                    background: "yellow",
-                  },
-                },
-              },
-            ],
-          },
-        ],
-      },
-    ],
+    children: [],
   },
-  setCurrentComponent(key) {
-    this.currentComponent = key;
+  setCurrentComponent(id) {
+    this.currentComponent = id;
   },
-  setActiveComponent(key) {
-    this.activeComponent = key;
+  setActiveComponent(id) {
+    this.activeComponent = id;
+  },
+  setProps(id, props) {
+    this.propsMap[id] = props;
+  },
+  // 找到schema树中对应的children引用地址
+  setChildren(id, configId) {
+    for (let i of this.childrenMap[id]) {
+      if (i.id === configId) {
+        this.childrenMap[configId] = i.children;
+      }
+    }
+  },
+  // 直接放入引用地址
+  addChildren(id, config) {
+    this.childrenMap[id].push(config);
+    this.uniqueId++;
+  },
+  addItem(key, value) {
+    store[key] = value;
   },
 });
+

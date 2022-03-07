@@ -14,17 +14,20 @@ export const CanvasTips = styled.div`
   text-align: center;
   font-size: 25px;
   font-weight: 500;
-  opacity: 0.5;
+  background: #fff;
+  span {
+    opacity: 0.5;
+  }
 `;
 
 export const CanvasComponent = styled.div`
-  display: inline-block;
+  display: ${(props) => props.display};
   border: ${(props) =>
     props.isHover ? "1px dashed #155bd4" : "1px solid #fff"};
 `;
 
 export const ActiveComponent = styled.div`
-  display: inline-block;
+  display: ${(props) => props.display};
   border: 1px dashed #155bd4;
 `;
 

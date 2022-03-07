@@ -39,7 +39,14 @@ export const componentList = [
     title: "容器",
     config: {
       type: "W-Container",
-      props: {},
+      props: {
+        style: {
+          display: "inline-block",
+          width: "300px",
+          height: "300px",
+          background: "#F0F2F5",
+        },
+      },
       children: [],
     },
   },
@@ -48,7 +55,11 @@ export const componentList = [
     title: "分割线",
     config: {
       type: "W-Divider",
-      props: {},
+      props: {
+        style: {
+          display: "block",
+        },
+      },
       children: [],
     },
   },
@@ -57,7 +68,11 @@ export const componentList = [
     title: "文本",
     config: {
       type: "W-Text",
-      props: {},
+      props: {
+        style: {
+          display: "block",
+        },
+      },
       children: [],
     },
   },

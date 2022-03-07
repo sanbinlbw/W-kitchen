@@ -1,11 +1,12 @@
 import React from "react";
 import RenderPage from ".";
-import { store } from "../mobx";
 
 function ShowPage() {
+  const schema = JSON.parse(localStorage.getItem("schema"));
+  console.log(schema);
   return (
     <div>
-      <RenderPage config={store.schema} />
+      <RenderPage config={schema} />
     </div>
   );
 }

@@ -7,11 +7,19 @@ import { store } from "../../mobx";
 
 function Header() {
   const [schemaDialog, setSchemaDialog] = useState(false);
+
+  const setSchema = () => {
+    localStorage.setItem("schema", JSON.stringify(store.schema));
+  };
   return (
     <SC.Header>
       <span>W-kitchen</span>
       <div>
-        <Button href="http://localhost:3000/showPage" target="blank">
+        <Button
+          href="http://localhost:3000/showPage"
+          target="blank"
+          onClick={setSchema}
+        >
           预览
         </Button>
         <Button type="primary" onClick={() => setSchemaDialog(true)}>
