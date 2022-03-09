@@ -2,27 +2,50 @@ import { makeAutoObservable, toJS } from "mobx";
 import { componentList } from "./componentList";
 
 export const store = makeAutoObservable({
-  // 当前选中组件index
-  currentId: undefined,
-  // 物料区
   componentList,
-  // 画布区组件
-  pageComponent: [],
-  // 配置区
-  pageConfig: [],
-  addList(component) {
-    this.pageComponent.push(component);
+  uniqueId: 1,
+  currentComponent: "",
+  activeComponent: "",
+  schema: {
+    type: "W-Container",
+    id: "root",
+    props: {
+      style: {
+        display: "block",
+        width: "calc(63vw - 2px)",
+        height: "calc(63vh - 2px)",
+        marginTop: "0px",
+        marginBottom: "0px",
+        background: "#fff",
+        overflowY: "auto",
+      },
+    },
+    children: [],
   },
-  addConfig(config) {
-    this.pageConfig.push(config);
+  setCurrentComponent(id) {
+    this.currentComponent = id;
   },
-  setId(id) {
-    this.currentId = id;
+  setActiveComponent(id) {
+    this.activeComponent = id;
   },
-  setConfig(config) {
-    this.pageConfig[this.currentId] = config;
+  setProps(id, props) {
+    this.schemaMap[id].props = props;
   },
-  setComponent(component) {
-    this.pageComponent[this.currentId] = component;
+  // 找到schema树中对应的children引用地址
+  setSchema(id, configId) {
+    for (let i of this.schemaMap[id].children) {
+      if (i.id === configId) {
+        this.schemaMap[configId] = i;
+      }
+    }
+  },
+  // 直接放入引用地址
+  addSchema(id, config) {
+    this.schemaMap[id].children.push(config);
+    this.uniqueId++;
+  },
+  addItem(key, value) {
+    store[key] = value;
   },
 });
+

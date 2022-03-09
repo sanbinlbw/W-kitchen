@@ -2,10 +2,14 @@ import styled from "styled-components";
 
 
 export const Component = styled.div`
-  height: 100%;
+  background: pink;
+  position: absolute;
+  bottom: 5vh;
+  height: 20vh;
+  width: 86%;
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: repeat(auto-fill, calc(5vw - 10px));
+  grid-template-rows: repeat(2, 1fr);
+  grid-template-columns: repeat(auto-fill, calc(5vw - 10px));
   overflow: hidden;
   background: #fff;
   padding: 10px;
