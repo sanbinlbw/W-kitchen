@@ -8,11 +8,13 @@ import { DragDropContext, Droppable } from "react-beautiful-dnd";
 
 function BuildCenter() {
   return (
-    <SC.BuildCenter>
+    <div>
+      <SC.BuildCenter>
+        <KitchenCanvas />
+        <KitchenConfig />
+      </SC.BuildCenter>
       <KitchenComponent />
-      <KitchenCanvas />
-      <KitchenConfig />
-    </SC.BuildCenter>
+    </div>
   );
 }
 

@@ -11,9 +11,11 @@ export const store = makeAutoObservable({
     id: "root",
     props: {
       style: {
-        display: "inline-block",
-        width: "calc(50vw - 2px)",
-        height: "calc(88vh - 2px)",
+        display: "block",
+        width: "calc(63vw - 2px)",
+        height: "calc(63vh - 2px)",
+        marginTop: "0px",
+        marginBottom: "0px",
         background: "#fff",
         overflowY: "auto",
       },
@@ -27,19 +29,19 @@ export const store = makeAutoObservable({
     this.activeComponent = id;
   },
   setProps(id, props) {
-    this.propsMap[id] = props;
+    this.schemaMap[id].props = props;
   },
   // 找到schema树中对应的children引用地址
-  setChildren(id, configId) {
-    for (let i of this.childrenMap[id]) {
+  setSchema(id, configId) {
+    for (let i of this.schemaMap[id].children) {
       if (i.id === configId) {
-        this.childrenMap[configId] = i.children;
+        this.schemaMap[configId] = i;
       }
     }
   },
   // 直接放入引用地址
-  addChildren(id, config) {
-    this.childrenMap[id].push(config);
+  addSchema(id, config) {
+    this.schemaMap[id].children.push(config);
     this.uniqueId++;
   },
   addItem(key, value) {

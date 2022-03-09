@@ -1,16 +1,10 @@
 import styled from "styled-components";
 
-export const Canvas = styled.div`
-  height: 88vh;
-  background: #fff;
-  box-shadow: 0 0 10px 0 rgb(0 0 0 / 10%);
-  overflow-y: auto;
-`;
 
 export const CanvasTips = styled.div`
   width: 100%;
-  height: 88vh;
-  line-height: 88vh;
+  height: 100%;
+  line-height: 100%;
   text-align: center;
   font-size: 25px;
   font-weight: 500;
@@ -22,8 +16,7 @@ export const CanvasTips = styled.div`
 
 export const CanvasComponent = styled.div`
   display: ${(props) => props.display};
-  border: ${(props) =>
-    props.isHover ? "1px dashed #155bd4" : "1px solid #fff"};
+  border: ${(props) => (props.isHover ? "1px dashed #155bd4" : "")};
 `;
 
 export const ActiveComponent = styled.div`

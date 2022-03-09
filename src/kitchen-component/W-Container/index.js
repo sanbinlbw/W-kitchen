@@ -16,16 +16,13 @@ function WContainer(props) {
     }),
     drop(item, monitor) {
       if (monitor.didDrop()) return;
-      if (!("childrenMap" in store)) {
-        store.addItem("childrenMap", {
-          root: store.schema.children,
-        });
-      }
       const _config = { ...item.item.config };
+      // 每个组件设置一个唯一id
       _config.id = store.uniqueId;
-      store.addChildren(id, _config);
-      store.setChildren(id, _config.id);
-      console.log(toJS(store.schema));
+      // 组件设置父id-代表它在fId的children下
+      _config.fId = id;
+      store.addSchema(id, _config);
+      store.setSchema(id, _config.id);
     },
   }));
 

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { toJS } from "mobx";
 import _ from "lodash";
 import * as SC from "../style";
@@ -9,6 +9,14 @@ import ActiveComponent from "../ActiveComponent";
 
 function Canvas({ config }) {
   const { type, props, children, id } = toJS(config);
+
+  useEffect(() => {
+    if (!("schemaMap" in store)) {
+      store.addItem("schemaMap", {
+        root: store.schema,
+      });
+    }
+  }, []);
 
   // 添加isConfig标记，判断是否是可编辑的组件
   const _props = _.cloneDeep(props);
@@ -27,6 +35,7 @@ function Canvas({ config }) {
   const clickComponent = (ev) => {
     ev.stopPropagation();
     store.setActiveComponent(id);
+    // store.setProps(id)
   };
 
   const moveActiveComponent = (ev) => {

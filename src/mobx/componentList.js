@@ -41,10 +41,12 @@ export const componentList = [
       type: "W-Container",
       props: {
         style: {
-          display: "inline-block",
-          width: "300px",
-          height: "300px",
-          background: "#F0F2F5",
+          display: "block",
+          width: "10vw",
+          height: "200px",
+          marginTop: "0px",
+          marginBottom: "0px",
+          background: "#8F4B2E",
         },
       },
       children: [],
