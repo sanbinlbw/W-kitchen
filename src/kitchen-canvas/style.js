@@ -16,7 +16,8 @@ export const CanvasTips = styled.div`
 
 export const CanvasComponent = styled.div`
   display: ${(props) => props.display};
-  border: ${(props) => (props.isHover ? "1px dashed #155bd4" : "")};
+  border: ${(props) =>
+    props.isHover ? "1px dashed #155bd4" : "1px dashed rgba(255,255,255,0)"};
 `;
 
 export const ActiveComponent = styled.div`
