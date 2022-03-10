@@ -17,12 +17,28 @@ export const CanvasTips = styled.div`
 export const CanvasComponent = styled.div`
   display: ${(props) => props.display};
   border: ${(props) =>
-    props.isHover ? "1px dashed #155bd4" : "1px dashed rgba(255,255,255,0)"};
+    // props.isHover ? "1px dashed #155bd4" : "1px dashed rgba(255,255,255,0)"};
+    props.isHover ? "1px dashed #155bd4" : ""};
 `;
 
 export const ActiveComponent = styled.div`
+  position: relative;
   display: ${(props) => props.display};
   border: 1px dashed #155bd4;
+`;
+
+export const OperatingComponent = styled.div`
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  column-gap: 5px;
+  align-content: center;
+  width: 70px;
+  height: 20px;
+  position: absolute;
+  left: 0;
+  bottom: -21px;
+  background: #1890ff;
+  color: #fff;
 `;
 
 export const DropTips = styled.div`

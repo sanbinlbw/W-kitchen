@@ -13,27 +13,6 @@ import WDivider from "../kitchen-component/W-Divider";
 import WContainer from "../kitchen-component/W-Container";
 
 export const componentList = [
-  // {
-  //   type: "W-Table",
-  //   icon: <TableOutlined />,
-  //   title: "表格",
-  //   component: (props = {}) => <WTable {...props} />,
-  //   config: TableConfig,
-  // },
-  // {
-  //   type: "W-Form",
-  //   icon: <FileSearchOutlined />,
-  //   title: "表单",
-  //   component: (props = {}) => <WForm {...props} />,
-  //   config: FormConfig,
-  // },
-  // {
-  //   name: "W-Banner",
-  //   icon: <OneToOneOutlined />,
-  //   title: "轮播图",
-  //   component: (props = {}) => <WBanner {...props} />,
-  //   config: BannerConfig,
-  // },
   {
     icon: <OneToOneOutlined />,
     title: "容器",
@@ -56,7 +35,7 @@ export const componentList = [
           paddingBottom: "0px",
           paddingLeft: "0vw",
           paddingRight: "0vw",
-          background: "#8F4B2E",
+          backgroundColor: "#8F4B2E",
         },
       },
       children: [],
@@ -82,8 +61,19 @@ export const componentList = [
       type: "W-Text",
       props: {
         style: {
+          width: "3vw",
           display: "block",
+          marginTop: "0px",
+          marginBottom: "0px",
+          marginLeft: "0vw",
+          marginRight: "0vw",
+          fontSize: "12px",
+          fontWeight: 400,
+          color: "#000",
+          wordWrap: "break-word",
+          wordBreak: "break-all",
         },
+        content: "content",
       },
       children: [],
     },

@@ -38,11 +38,10 @@ function ContainerConfig() {
     });
   };
 
-  const changeBackground = (color) => {
-    console.log("color", color);
+  const changeBackgroundColor = (color) => {
     store.setProps(store.activeComponent, {
       ...props,
-      style: { ...props.style, background: color.hex },
+      style: { ...props.style, backgroundColor: color.hex },
     });
   };
 
@@ -126,29 +125,6 @@ function ContainerConfig() {
   const baseRender = () => {
     return (
       <div style={{ height: "63vh", overflowY: "auto" }}>
-        {/* <Divider orientation="left">基本功能</Divider>
-        <SC.Content>
-          <SC.Item>
-            <SC.Title>内容:</SC.Title>
-            <Input
-              placeholder={config.content}
-              onChange={changeContent}
-              style={{ width: "75%" }}
-            />
-          </SC.Item>
-          <SC.Item>
-            <SC.Title>字体颜色:</SC.Title>
-            <SC.Color
-              color={config.color}
-              onClick={() => setIsColor(!isColor)}
-            />
-            {isColor && (
-              <div style={{ position: "absolute", zIndex: 1 }}>
-                <ChromePicker color={config.color} onChange={changeFontColor} />
-              </div>
-            )}
-          </SC.Item>
-        </SC.Content> */}
         <Collapse
           defaultActiveKey={["1"]}
           expandIcon={({ isActive }) => (
@@ -192,14 +168,14 @@ function ContainerConfig() {
                 <SC.Item>
                   <SC.Title>背景颜色:</SC.Title>
                   <SC.Color
-                    color={props.style.background}
+                    color={props.style.backgroundColor}
                     onClick={() => setIsColor(!isColor)}
                   />
                   {isColor && (
                     <div style={{ position: "absolute", zIndex: 1 }}>
                       <ChromePicker
-                        color={props.style.background}
-                        onChange={changeBackground}
+                        color={props.style.backgroundColor}
+                        onChange={changeBackgroundColor}
                       />
                     </div>
                   )}

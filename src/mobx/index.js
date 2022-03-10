@@ -49,6 +49,43 @@ export const store = makeAutoObservable({
     this.schemaMap[id].children.push(config);
     this.uniqueId++;
   },
+  deleteSchema() {
+    const fId = this.schemaMap[this.activeComponent].fId;
+    const index = this.schemaMap[fId].children.findIndex(
+      (item) => item.id === this.activeComponent
+    );
+    this.schemaMap[fId].children.splice(index, 1);
+    delete this.schemaMap[this.activeComponent];
+    this.activeComponent = "";
+  },
+  prevSchema() {
+    const fId = this.schemaMap[this.activeComponent].fId;
+    const index = this.schemaMap[fId].children.findIndex(
+      (item) => item.id === this.activeComponent
+    );
+    if (index === 0) return;
+    [
+      this.schemaMap[fId].children[index],
+      this.schemaMap[fId].children[index - 1],
+    ] = [
+      this.schemaMap[fId].children[index - 1],
+      this.schemaMap[fId].children[index],
+    ];
+  },
+  nextSchema() {
+    const fId = this.schemaMap[this.activeComponent].fId;
+    const index = this.schemaMap[fId].children.findIndex(
+      (item) => item.id === this.activeComponent
+    );
+    if (index === this.schemaMap[fId].children.length - 1) return;
+    [
+      this.schemaMap[fId].children[index],
+      this.schemaMap[fId].children[index + 1],
+    ] = [
+      this.schemaMap[fId].children[index + 1],
+      this.schemaMap[fId].children[index],
+    ];
+  },
   addItem(key, value) {
     store[key] = value;
   },
