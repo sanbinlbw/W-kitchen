@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import * as SC from "../style";
 import {
   ArrowLeftOutlined,
@@ -8,9 +8,33 @@ import {
 import { store } from "../../mobx";
 import { Rnd } from "react-rnd";
 
+const resizeMap = {
+  "W-Container": {
+    bottom: true,
+    bottomLeft: true,
+    bottomRight: true,
+    left: false,
+    right: true,
+    top: false,
+    topLeft: false,
+    topRight: false,
+  },
+  "W-Text": {
+    bottom: false,
+    bottomLeft: false,
+    bottomRight: false,
+    left: false,
+    right: true,
+    top: false,
+    topLeft: false,
+    topRight: false,
+  },
+};
+
 function ActiveComponent(props) {
-  const { children, onMouseMove, display } = props;
+  const { children, leaveComponent, enterComponent, display } = props;
   const { props: _props } = store.schemaMap[store.activeComponent];
+
   const deleteItem = (ev) => {
     ev.stopPropagation();
     store.deleteSchema();
@@ -40,7 +64,8 @@ function ActiveComponent(props) {
   };
   return (
     <SC.ActiveComponent
-      onMouseMove={onMouseMove}
+      onMouseLeave={leaveComponent}
+      onMouseEnter={enterComponent}
       display={display}
       onClick={(ev) => ev.stopPropagation()}
     >
@@ -56,17 +81,28 @@ function ActiveComponent(props) {
               _props.style.width.substring(0, _props.style.width.length - 2)
             ) + 2
           }px`,
-          height: `${
-            parseInt(
-              _props.style.height.substring(0, _props.style.height.length - 2)
-            ) + 2
-          }px`,
+          height:
+            _props.style.height &&
+            `${
+              parseInt(
+                _props.style.height.substring(0, _props.style.height.length - 2)
+              ) + 2
+            }px`,
         }}
         disableDragging={true}
+        enableResizing={
+          store.activeComponent === "root"
+            ? false
+            : resizeMap[store.schemaMap[store.activeComponent].type]
+        }
+        // enableResizing={false}
         onResize={(e, direction, ref, delta, position) => {
-          // e.stopPropagation();
           console.log(ref);
-          changeItem(ref.style.width, ref.style.height);
+          if (_props.style.height) {
+            changeItem(ref.style.width, ref.style.height);
+          } else {
+            changeItem(ref.style.width);
+          }
         }}
       >
         {children}

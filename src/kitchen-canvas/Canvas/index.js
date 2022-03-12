@@ -8,7 +8,7 @@ import { observer } from "mobx-react-lite";
 import ActiveComponent from "../ActiveComponent";
 
 function Canvas({ config }) {
-  const { type, props, children, id } = toJS(config);
+  const { type, props, children, id, fId = "" } = toJS(config);
 
   useEffect(() => {
     if (!("schemaMap" in store)) {
@@ -23,12 +23,11 @@ function Canvas({ config }) {
   _props.isConfig = true;
 
   const leaveComponent = () => {
-    store.setCurrentComponent("");
+    // 离开时hover一定为他的父组件，若为兄弟组件则会再次出发mouseenter事件
+    store.setCurrentComponent(fId);
   };
 
-  const moveComponent = (ev) => {
-    ev.stopPropagation();
-    if (id === store.currentComponent) return;
+  const enterComponent = () => {
     store.setCurrentComponent(id);
   };
 
@@ -38,15 +37,10 @@ function Canvas({ config }) {
     // store.setProps(id)
   };
 
-  const moveActiveComponent = (ev) => {
-    ev.stopPropagation();
-    if (!store.activeComponent) return;
-    store.setCurrentComponent("");
-  };
-
   return store.activeComponent === id ? (
     <ActiveComponent
-      onMouseMove={moveActiveComponent}
+      leaveComponent={leaveComponent}
+      enterComponent={enterComponent}
       display={props.style.display}
     >
       {renderType[type](_props, children, id)}
@@ -56,7 +50,7 @@ function Canvas({ config }) {
       // 判断是否hover当前组件
       isHover={store.currentComponent === id}
       onMouseLeave={leaveComponent}
-      onMouseMove={moveComponent}
+      onMouseEnter={enterComponent}
       onClick={clickComponent}
       display={props.style.display}
     >

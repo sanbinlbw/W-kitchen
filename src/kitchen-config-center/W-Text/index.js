@@ -16,13 +16,14 @@ function TextConfig() {
   const { props } = store.schemaMap[store.activeComponent];
 
   const dataFilter = (value) => {
+    console.log("value", value);
     return props.style[value].substring(0, props.style[value].length - 2);
   };
 
-  const changeWidth = (value) => {
+  const changeWidth = ({ target: { value } }) => {
     store.setProps(store.activeComponent, {
       ...props,
-      style: { ...props.style, width: `${value}px` },
+      style: { ...props.style, width: value },
     });
   };
 
@@ -84,7 +85,10 @@ function TextConfig() {
 
   const baseRender = () => {
     return (
-      <div style={{ height: "63vh", overflowY: "auto" }}>
+      <div
+        style={{ height: "63vh", overflowY: "auto" }}
+        onClick={() => setIsColor(false)}
+      >
         <Collapse
           defaultActiveKey={["1"]}
           expandIcon={({ isActive }) => (
@@ -101,10 +105,10 @@ function TextConfig() {
             <SC.Content>
               <SC.Item>
                 <SC.Title>宽度:</SC.Title>
-                <Slider
-                  max={63}
-                  value={dataFilter("width")}
+                <Input
+                  value={props.style.width}
                   onChange={changeWidth}
+                  style={{ width: "100px" }}
                 />
               </SC.Item>
               <SC.Item>

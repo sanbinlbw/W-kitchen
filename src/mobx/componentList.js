@@ -61,12 +61,12 @@ export const componentList = [
       type: "W-Text",
       props: {
         style: {
-          width: "3vw",
+          width: "50px",
           display: "block",
           marginTop: "0px",
           marginBottom: "0px",
-          marginLeft: "0vw",
-          marginRight: "0vw",
+          marginLeft: "0px",
+          marginRight: "0px",
           fontSize: "12px",
           fontWeight: 400,
           color: "#000",
