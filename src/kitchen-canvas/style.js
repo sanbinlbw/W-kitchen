@@ -19,11 +19,13 @@ export const CanvasComponent = styled.div`
   border: ${(props) =>
     // props.isHover ? "1px dashed #155bd4" : "1px dashed rgba(255,255,255,0)"};
     props.isHover ? "1px dashed #155bd4" : ""};
+  width: ${(props) => props.isInside && "100%"};
 `;
 
 export const ActiveComponent = styled.div`
   position: relative;
   display: ${(props) => props.display};
+  width: ${(props) => props.isInside && "100%"};
 `;
 
 export const OperatingComponent = styled.div`

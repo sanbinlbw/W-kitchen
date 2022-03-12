@@ -3,15 +3,7 @@ import { Divider } from "antd";
 import { toJS } from "mobx";
 
 function WDivider(props) {
-  const {
-    orientation = "left",
-    content = "text",
-    style = {
-      marginTop: 0,
-      marginBottom: 0,
-      color: "#000",
-    },
-  } = toJS(props);
+  const { orientation = "left", content = "text", style } = toJS(props);
   return (
     <Divider style={style} orientation={orientation}>
       {content}

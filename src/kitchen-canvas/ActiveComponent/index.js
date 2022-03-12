@@ -19,10 +19,11 @@ const resizeMap = {
     topLeft: false,
     topRight: false,
   },
+  "W-Divider": false,
   "W-Text": {
-    bottom: false,
+    bottom: true,
     bottomLeft: false,
-    bottomRight: false,
+    bottomRight: true,
     left: false,
     right: true,
     top: false,
@@ -32,8 +33,9 @@ const resizeMap = {
 };
 
 function ActiveComponent(props) {
-  const { children, leaveComponent, enterComponent, display } = props;
-  const { props: _props } = store.schemaMap[store.activeComponent];
+  const { children, leaveComponent, enterComponent, display, insideMap } =
+    props;
+  const { props: _props, type } = store.schemaMap[store.activeComponent];
 
   const deleteItem = (ev) => {
     ev.stopPropagation();
@@ -62,11 +64,42 @@ function ActiveComponent(props) {
       },
     });
   };
+
+  const dataFilter = (value) => {
+    if (!_props.style[value]) return "";
+    return _props.style[value].substring(0, _props.style[value].length - 2);
+  };
+
+  // 计算长宽
+  const computeData = (data, key) => {
+    if (insideMap.includes(type)) {
+      return data;
+    } else if (_props.style[key]) {
+      if (key === "width") {
+        return `${
+          parseInt(dataFilter(key)) +
+          2 +
+          parseInt(dataFilter("marginLeft")) +
+          parseInt(dataFilter("marginRight"))
+        }px`;
+      } else if (key === "height") {
+        return `${
+          parseInt(dataFilter(key)) +
+          2 +
+          parseInt(dataFilter("marginTop")) +
+          parseInt(dataFilter("marginBottom"))
+        }px`;
+      }
+    } else {
+      return "";
+    }
+  };
   return (
     <SC.ActiveComponent
       onMouseLeave={leaveComponent}
       onMouseEnter={enterComponent}
       display={display}
+      isInside={insideMap.includes(type)}
       onClick={(ev) => ev.stopPropagation()}
     >
       <Rnd
@@ -76,18 +109,8 @@ function ActiveComponent(props) {
           border: "1px dashed #155bd4",
         }}
         size={{
-          width: `${
-            parseInt(
-              _props.style.width.substring(0, _props.style.width.length - 2)
-            ) + 2
-          }px`,
-          height:
-            _props.style.height &&
-            `${
-              parseInt(
-                _props.style.height.substring(0, _props.style.height.length - 2)
-              ) + 2
-            }px`,
+          width: computeData(_props.style.width, "width"),
+          height: computeData(_props.style.height, "height"),
         }}
         disableDragging={true}
         enableResizing={

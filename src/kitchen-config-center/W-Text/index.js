@@ -138,7 +138,7 @@ function TextConfig() {
                   }}
                 />
                 {isColor && (
-                  <div style={{ position: "absolute", zIndex: 1 }}>
+                  <div style={{ position: "absolute", zIndex: 2 }}>
                     <ChromePicker
                       color={props.style.color}
                       onChange={changeColor}

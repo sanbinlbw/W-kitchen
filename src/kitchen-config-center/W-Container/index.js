@@ -178,7 +178,7 @@ function ContainerConfig() {
                   />
                   {isColor && (
                     <div
-                      style={{ position: "absolute", zIndex: 1 }}
+                      style={{ position: "absolute", zIndex: 2 }}
                       onClick={(ev) => ev.stopPropagation()}
                     >
                       <ChromePicker

@@ -7,6 +7,8 @@ import { store } from "../../mobx";
 import { observer } from "mobx-react-lite";
 import ActiveComponent from "../ActiveComponent";
 
+const insideMap = ["W-Divider"];
+
 function Canvas({ config }) {
   const { type, props, children, id, fId = "" } = toJS(config);
 
@@ -42,6 +44,7 @@ function Canvas({ config }) {
       leaveComponent={leaveComponent}
       enterComponent={enterComponent}
       display={props.style.display}
+      insideMap={insideMap}
     >
       {renderType[type](_props, children, id)}
     </ActiveComponent>
@@ -53,6 +56,7 @@ function Canvas({ config }) {
       onMouseEnter={enterComponent}
       onClick={clickComponent}
       display={props.style.display}
+      isInside={insideMap.includes(type)}
     >
       {renderType[type](_props, children, id)}
     </SC.CanvasComponent>

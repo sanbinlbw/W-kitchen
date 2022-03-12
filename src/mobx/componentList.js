@@ -47,8 +47,13 @@ export const componentList = [
     config: {
       type: "W-Divider",
       props: {
+        orientation: "left",
+        content: "text",
         style: {
-          display: "block",
+          width: "100%",
+          marginTop: "0px",
+          marginBottom: "0px",
+          color: "#000",
         },
       },
       children: [],
