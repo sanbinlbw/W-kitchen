@@ -24,7 +24,6 @@ export const CanvasComponent = styled.div`
 export const ActiveComponent = styled.div`
   position: relative;
   display: ${(props) => props.display};
-  border: 1px dashed #155bd4;
 `;
 
 export const OperatingComponent = styled.div`

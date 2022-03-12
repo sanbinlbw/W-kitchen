@@ -4,7 +4,6 @@ import { useDrop } from "react-dnd";
 import { store } from "../../mobx";
 import RenderPage from "../../RenderPage";
 import Canvas from "../../kitchen-canvas/Canvas";
-import _ from "lodash";
 
 function WContainer(props) {
   const { style = {}, children = [], isConfig = false, id = "" } = toJS(props);

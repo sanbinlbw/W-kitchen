@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React, { useRef } from "react";
 import { store } from "../mobx";
-import { reaction } from "mobx";
 import { observer } from "mobx-react-lite";
 import * as SC from "./style";
 import { configComponent } from "../config/config-component";
@@ -12,7 +11,7 @@ function KitchenConfig() {
     return store.activeComponent === "" ? (
       <SC.ConfigTips>请选择组件</SC.ConfigTips>
     ) : (
-      configComponent(store.schemaMap[store.activeComponent].type)
+      <div>{configComponent(store.schemaMap[store.activeComponent].type)}</div>
     );
   };
   return <SC.ConfigCenter>{renderCenter()}</SC.ConfigCenter>;

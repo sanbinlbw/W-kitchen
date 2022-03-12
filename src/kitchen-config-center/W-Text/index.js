@@ -22,7 +22,7 @@ function TextConfig() {
   const changeWidth = (value) => {
     store.setProps(store.activeComponent, {
       ...props,
-      style: { ...props.style, width: `${value}vw` },
+      style: { ...props.style, width: `${value}px` },
     });
   };
 
@@ -71,14 +71,14 @@ function TextConfig() {
   const changeLeft = (value) => {
     store.setProps(store.activeComponent, {
       ...props,
-      style: { ...props.style, marginLeft: `${value}vw` },
+      style: { ...props.style, marginLeft: `${value}px` },
     });
   };
 
   const changeRight = (value) => {
     store.setProps(store.activeComponent, {
       ...props,
-      style: { ...props.style, marginRight: `${value}vw` },
+      style: { ...props.style, marginRight: `${value}px` },
     });
   };
 

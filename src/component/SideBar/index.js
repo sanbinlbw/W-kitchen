@@ -47,7 +47,7 @@ function SideBar(props) {
   };
 
   return (
-    <Sider breakpoint="lg" collapsedWidth="0" theme="light">
+    <Sider breakpoint="lg" collapsedWidth="0" theme="light" width="12vw">
       <Logo />
       <Menu mode="inline" defaultSelectedKeys={[currentUrl]} onClick={pushLink}>
         {menuItem.map((item, index) => {

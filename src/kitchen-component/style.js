@@ -4,7 +4,7 @@ import styled from "styled-components";
 export const Component = styled.div`
   background: pink;
   position: absolute;
-  bottom: 5vh;
+  bottom: 1vh;
   height: 20vh;
   width: 86%;
   display: grid;

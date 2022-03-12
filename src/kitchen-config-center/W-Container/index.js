@@ -17,17 +17,17 @@ function ContainerConfig() {
   const dataFilter = (value) => {
     return props.style[value].substring(0, props.style[value].length - 2);
   };
-  const changeWidth = (value) => {
+  const changeWidth = ({ target: { value } }) => {
     store.setProps(store.activeComponent, {
       ...props,
-      style: { ...props.style, width: `${value}vw` },
+      style: { ...props.style, width: value },
     });
   };
 
-  const changeHeight = (value) => {
+  const changeHeight = ({ target: { value } }) => {
     store.setProps(store.activeComponent, {
       ...props,
-      style: { ...props.style, height: `${value}px` },
+      style: { ...props.style, height: value },
     });
   };
 
@@ -62,28 +62,28 @@ function ContainerConfig() {
   const changeLeft = (value) => {
     store.setProps(store.activeComponent, {
       ...props,
-      style: { ...props.style, marginLeft: `${value}vw` },
+      style: { ...props.style, marginLeft: `${value}px` },
     });
   };
 
   const changeRight = (value) => {
     store.setProps(store.activeComponent, {
       ...props,
-      style: { ...props.style, marginRight: `${value}vw` },
+      style: { ...props.style, marginRight: `${value}px` },
     });
   };
 
   const changePaddingLeft = (value) => {
     store.setProps(store.activeComponent, {
       ...props,
-      style: { ...props.style, paddingLeft: `${value}vw` },
+      style: { ...props.style, paddingLeft: `${value}px` },
     });
   };
 
   const changePaddingRight = (value) => {
     store.setProps(store.activeComponent, {
       ...props,
-      style: { ...props.style, paddingRight: `${value}vw` },
+      style: { ...props.style, paddingRight: `${value}px` },
     });
   };
 
@@ -101,15 +101,14 @@ function ContainerConfig() {
     });
   };
 
-  const changeFlexColumn = ({ target: { value } }) => {
-    console.log("value", value);
+  const changeJustify = ({ target: { value } }) => {
     store.setProps(store.activeComponent, {
       ...props,
       style: { ...props.style, justifyContent: value },
     });
   };
 
-  const changeFlexRow = ({ target: { value } }) => {
+  const changeAlign = ({ target: { value } }) => {
     store.setProps(store.activeComponent, {
       ...props,
       style: { ...props.style, alignItems: value },
@@ -124,7 +123,10 @@ function ContainerConfig() {
   };
   const baseRender = () => {
     return (
-      <div style={{ height: "63vh", overflowY: "auto" }}>
+      <div
+        style={{ height: "63vh", overflowY: "auto" }}
+        onClick={() => setIsColor(false)}
+      >
         <Collapse
           defaultActiveKey={["1"]}
           expandIcon={({ isActive }) => (
@@ -143,18 +145,18 @@ function ContainerConfig() {
               <SC.Content>
                 <SC.Item>
                   <SC.Title>宽度:</SC.Title>
-                  <Slider
-                    max={63}
-                    value={dataFilter("width")}
+                  <Input
+                    value={props.style.width}
                     onChange={changeWidth}
+                    style={{ width: "100px" }}
                   />
                 </SC.Item>
                 <SC.Item>
                   <SC.Title>高度:</SC.Title>
-                  <Slider
-                    max={1000}
-                    value={dataFilter("height")}
+                  <Input
+                    value={props.style.height}
                     onChange={changeHeight}
+                    style={{ width: "100px" }}
                   />
                 </SC.Item>
                 <SC.Item>
@@ -169,10 +171,16 @@ function ContainerConfig() {
                   <SC.Title>背景颜色:</SC.Title>
                   <SC.Color
                     color={props.style.backgroundColor}
-                    onClick={() => setIsColor(!isColor)}
+                    onClick={(ev) => {
+                      ev.stopPropagation();
+                      setIsColor(true);
+                    }}
                   />
                   {isColor && (
-                    <div style={{ position: "absolute", zIndex: 1 }}>
+                    <div
+                      style={{ position: "absolute", zIndex: 1 }}
+                      onClick={(ev) => ev.stopPropagation()}
+                    >
                       <ChromePicker
                         color={props.style.backgroundColor}
                         onChange={changeBackgroundColor}
@@ -277,28 +285,32 @@ function ContainerConfig() {
                   <Radio.Button value="row">横轴</Radio.Button>
                 </Radio.Group>
               </SC.Item>
-              <SC.Item>
-                <SC.Title>主轴:</SC.Title>
-                <Radio.Group
-                  onChange={changeFlexColumn}
-                  value={props.style.justifyContent}
-                >
-                  <Radio.Button value="flex-start">居前</Radio.Button>
-                  <Radio.Button value="center">居中</Radio.Button>
-                  <Radio.Button value="flex-end">居后</Radio.Button>
-                </Radio.Group>
-              </SC.Item>
-              <SC.Item>
-                <SC.Title>纵轴:</SC.Title>
-                <Radio.Group
-                  onChange={changeFlexRow}
-                  value={props.style.alignItems}
-                >
-                  <Radio.Button value="flex-start">居前</Radio.Button>
-                  <Radio.Button value="center">居中</Radio.Button>
-                  <Radio.Button value="flex-end">居后</Radio.Button>
-                </Radio.Group>
-              </SC.Item>
+              {store.activeComponent !== "root" && (
+                <SC.Item>
+                  <SC.Title>主轴:</SC.Title>
+                  <Radio.Group
+                    onChange={changeJustify}
+                    value={props.style.justifyContent}
+                  >
+                    <Radio.Button value="flex-start">居前</Radio.Button>
+                    <Radio.Button value="center">居中</Radio.Button>
+                    <Radio.Button value="flex-end">居后</Radio.Button>
+                  </Radio.Group>
+                </SC.Item>
+              )}
+              {store.activeComponent !== "root" && (
+                <SC.Item>
+                  <SC.Title>纵轴:</SC.Title>
+                  <Radio.Group
+                    onChange={changeAlign}
+                    value={props.style.alignItems}
+                  >
+                    <Radio.Button value="flex-start">居前</Radio.Button>
+                    <Radio.Button value="center">居中</Radio.Button>
+                    <Radio.Button value="flex-end">居后</Radio.Button>
+                  </Radio.Group>
+                </SC.Item>
+              )}
             </SC.Content>
           </Panel>
         </Collapse>

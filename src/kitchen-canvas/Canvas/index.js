@@ -40,6 +40,8 @@ function Canvas({ config }) {
 
   const moveActiveComponent = (ev) => {
     ev.stopPropagation();
+    if (!store.activeComponent) return;
+    store.setCurrentComponent("");
   };
 
   return store.activeComponent === id ? (

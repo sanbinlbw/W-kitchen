@@ -12,8 +12,10 @@ function Index(props) {
     <Layout style={{ height: "100vh" }}>
       <SideBar />
       <Layout>
-        <Header />
-        <Content style={{ margin: "24px 16px 0", height: "calc(100% - 56px)" }}>
+        <Header style={{ width: "84vw" }} />
+        <Content
+          style={{ margin: "3vh 1vw 0 1vw", height: "calc(100% - 56px)" }}
+        >
           {React.Children.map(props.children, (child) => child)}
         </Content>
       </Layout>
