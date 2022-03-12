@@ -16,7 +16,6 @@ function TextConfig() {
   const { props } = store.schemaMap[store.activeComponent];
 
   const dataFilter = (value) => {
-    console.log("value", value);
     return props.style[value].substring(0, props.style[value].length - 2);
   };
 
@@ -133,7 +132,10 @@ function TextConfig() {
                 <SC.Title>字体颜色:</SC.Title>
                 <SC.Color
                   color={props.style.color}
-                  onClick={() => setIsColor(!isColor)}
+                  onClick={(ev) => {
+                    ev.stopPropagation();
+                    setIsColor(true);
+                  }}
                 />
                 {isColor && (
                   <div style={{ position: "absolute", zIndex: 1 }}>
