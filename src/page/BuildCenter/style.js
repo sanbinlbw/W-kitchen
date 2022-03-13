@@ -1,7 +1,10 @@
 import styled from "styled-components";
 
 export const BuildCenter = styled.div`
-  display: grid;
-  grid-template-columns: 63vw 20vw;
-  grid-column-gap: 3vw;
+  display: flex;
+  justify-content: center;
+`;
+
+export const KitchenConfig = styled.div`
+  width: 20vw;
 `;

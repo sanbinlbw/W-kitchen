@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Layout, Menu } from "antd";
+import { Layout, Menu, Dropdown } from "antd";
 import { withRouter } from "react-router-dom";
 import {
   GroupOutlined,
@@ -8,7 +8,7 @@ import {
   ReadOutlined,
 } from "@ant-design/icons";
 
-import { Logo } from "./style";
+import * as SC from "./style";
 
 const { Sider } = Layout;
 
@@ -40,16 +40,16 @@ function SideBar(props) {
     (item) => item.url === props.location.pathname
   );
   const [currentUrl] = useState(String(index));
+  const [menuVisible, setMenuVisible] = useState(false);
 
   const pushLink = (item) => {
     const url = menuItem[item.key].url;
     props.history.push(url);
   };
 
-  return (
-    <Sider breakpoint="lg" collapsedWidth="0" theme="light" width="12vw">
-      <Logo />
-      <Menu mode="inline" defaultSelectedKeys={[currentUrl]} onClick={pushLink}>
+  const menuRender = () => {
+    return (
+      <Menu onClick={pushLink}>
         {menuItem.map((item, index) => {
           return (
             <Menu.Item key={index} icon={item.icon}>
@@ -58,7 +58,17 @@ function SideBar(props) {
           );
         })}
       </Menu>
-    </Sider>
+    );
+  };
+
+  return (
+    <Dropdown
+      overlay={menuRender}
+      onVisibleChange={() => setMenuVisible(!menuVisible)}
+      visible={menuVisible}
+    >
+      <SC.Logo />
+    </Dropdown>
   );
 }
 
