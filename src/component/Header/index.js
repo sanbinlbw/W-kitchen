@@ -4,7 +4,7 @@ import ReactJson from "react-json-view";
 
 import * as SC from "./style";
 import { store } from "../../mobx";
-
+import SideBar from "../SideBar";
 
 function Header() {
   const [schemaDialog, setSchemaDialog] = useState(false);
@@ -14,7 +14,18 @@ function Header() {
   };
   return (
     <SC.Header>
-      <span>W-kitchen</span>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "row",
+          alignItems: "center",
+          height: "60px",
+          marginLeft: "1vw",
+        }}
+      >
+        <SideBar />
+        <span>W-kitchen</span>
+      </div>
       <div>
         <Button
           href="http://localhost:3000/showPage"
