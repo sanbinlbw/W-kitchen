@@ -35,6 +35,7 @@ function Canvas({ config }) {
 
   const clickComponent = (ev) => {
     ev.stopPropagation();
+
     store.setActiveComponent(id);
     // store.setProps(id)
   };

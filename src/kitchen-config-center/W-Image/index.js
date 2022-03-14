@@ -10,8 +10,7 @@ import { CaretRightOutlined } from "@ant-design/icons";
 
 const { Panel } = Collapse;
 
-function ContainerConfig() {
-  const [isColor, setIsColor] = useState(false);
+function ImageConfig() {
   const [isBorderColor, setBorderColor] = useState(false);
   const { props } = store.schemaMap[store.activeComponent];
 
@@ -39,10 +38,10 @@ function ContainerConfig() {
     });
   };
 
-  const changeBackgroundColor = (color) => {
+  const changeBackground = ({ target: { value } }) => {
     store.setProps(store.activeComponent, {
       ...props,
-      style: { ...props.style, backgroundColor: color.hex },
+      style: { ...props.style, background: `url(${value})` },
     });
   };
 
@@ -154,10 +153,7 @@ function ContainerConfig() {
     return (
       <div
         style={{ height: "63vh", overflowY: "auto" }}
-        onClick={() => {
-          setIsColor(false);
-          setBorderColor(false);
-        }}
+        onClick={() => setBorderColor(false)}
       >
         <Collapse
           defaultActiveKey={["1"]}
@@ -199,27 +195,6 @@ function ContainerConfig() {
                     onChange={changeRadius}
                   />
                 </SC.Item>
-                <SC.Item>
-                  <SC.Title>背景颜色:</SC.Title>
-                  <SC.Color
-                    color={props.style.backgroundColor}
-                    onClick={(ev) => {
-                      ev.stopPropagation();
-                      setIsColor(true);
-                    }}
-                  />
-                  {isColor && (
-                    <div
-                      style={{ position: "absolute", zIndex: 2 }}
-                      onClick={(ev) => ev.stopPropagation()}
-                    >
-                      <ChromePicker
-                        color={props.style.backgroundColor}
-                        onChange={changeBackgroundColor}
-                      />
-                    </div>
-                  )}
-                </SC.Item>
                 {store.activeComponent !== "root" && (
                   <SC.Item>
                     <SC.Title>边框大小:</SC.Title>
@@ -253,6 +228,13 @@ function ContainerConfig() {
                     )}
                   </SC.Item>
                 )}
+                <SC.Item>
+                  <SC.Title>背景图片:</SC.Title>
+                  <Input
+                    value={props.style.background.slice(4, -1)}
+                    onChange={changeBackground}
+                  />
+                </SC.Item>
                 <SC.Item>
                   <SC.Title>是否跳转:</SC.Title>
                   <Switch onChange={setCanHref} checked={props.canHref} />
@@ -396,4 +378,4 @@ function ContainerConfig() {
   return <div>{baseRender()}</div>;
 }
 
-export default observer(ContainerConfig);
+export default observer(ImageConfig);

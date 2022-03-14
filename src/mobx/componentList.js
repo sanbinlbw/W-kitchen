@@ -2,15 +2,8 @@ import {
   OneToOneOutlined,
   ProfileOutlined,
   ColumnHeightOutlined,
-  FileSearchOutlined,
+  FileImageOutlined,
 } from "@ant-design/icons";
-
-// import WInput from "../kitchen-component/W-Input";
-// import WTable from "../kitchen-component/W-Table";
-// import WForm from "../kitchen-component/W-Form";
-// import WBanner from "../kitchen-component/W-Banner";
-import WDivider from "../kitchen-component/W-Divider";
-import WContainer from "../kitchen-component/W-Container";
 
 export const componentList = [
   {
@@ -27,6 +20,9 @@ export const componentList = [
           width: "200px",
           height: "200px",
           borderRadius: "0px",
+          borderWidth: "0px",
+          borderStyle: "solid",
+          borderColor: "#D4D4D4",
           marginTop: "0px",
           marginBottom: "0px",
           marginLeft: "0px",
@@ -37,6 +33,8 @@ export const componentList = [
           paddingRight: "0px",
           backgroundColor: "#8F4B2E",
         },
+        canHref: false,
+        hrefUrl: "http://www.baidu.com",
       },
       children: [],
     },
@@ -79,6 +77,43 @@ export const componentList = [
           wordBreak: "break-all",
         },
         content: "content",
+        canHref: false,
+        hrefUrl: "http://www.baidu.com",
+      },
+      children: [],
+    },
+  },
+  {
+    icon: <FileImageOutlined />,
+    title: "图片",
+    config: {
+      type: "W-Image",
+      props: {
+        style: {
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "flex-start",
+          alignItems: "flex-start",
+          width: "200px",
+          height: "200px",
+          borderRadius: "0px",
+          borderWidth: "0px",
+          borderStyle: "solid",
+          borderColor: "#D4D4D4",
+          marginTop: "0px",
+          marginBottom: "0px",
+          marginLeft: "0px",
+          marginRight: "0px",
+          paddingTop: "0px",
+          paddingBottom: "0px",
+          paddingLeft: "0px",
+          paddingRight: "0px",
+          background:
+            "url(https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png)",
+          backgroundSize: "100%",
+        },
+        canHref: false,
+        hrefUrl: "http://www.baidu.com",
       },
       children: [],
     },

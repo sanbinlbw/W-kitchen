@@ -4,10 +4,12 @@ import { toJS } from "mobx";
 
 function WDivider(props) {
   const { orientation = "left", content = "text", style } = toJS(props);
-  return (
+  return content ? (
     <Divider style={style} orientation={orientation}>
       {content}
     </Divider>
+  ) : (
+    <Divider />
   );
 }
 

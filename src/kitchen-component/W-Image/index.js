@@ -5,7 +5,7 @@ import { store } from "../../mobx";
 import RenderPage from "../../RenderPage";
 import Canvas from "../../kitchen-canvas/Canvas";
 
-function WContainer(props) {
+function WImage(props) {
   const {
     style = {},
     children = [],
@@ -51,4 +51,4 @@ function WContainer(props) {
   );
 }
 
-export default WContainer;
+export default WImage;

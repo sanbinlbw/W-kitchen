@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Divider, Space, Radio, Slider, Input } from "antd";
+import { Divider, Switch, Radio, Slider, Input } from "antd";
 import { ChromePicker } from "react-color";
 
 import { store } from "../../mobx";
@@ -51,6 +51,20 @@ function TextConfig() {
     store.setProps(store.activeComponent, {
       ...props,
       content: el.target.value,
+    });
+  };
+
+  const setCanHref = (checked) => {
+    store.setProps(store.activeComponent, {
+      ...props,
+      canHref: checked,
+    });
+  };
+
+  const changeHrefUrl = ({ target: { value } }) => {
+    store.setProps(store.activeComponent, {
+      ...props,
+      hrefUrl: value,
     });
   };
 
@@ -138,7 +152,10 @@ function TextConfig() {
                   }}
                 />
                 {isColor && (
-                  <div style={{ position: "absolute", zIndex: 2 }}>
+                  <div
+                    style={{ position: "absolute", zIndex: 2 }}
+                    onClick={(ev) => ev.stopPropagation()}
+                  >
                     <ChromePicker
                       color={props.style.color}
                       onChange={changeColor}
@@ -155,7 +172,16 @@ function TextConfig() {
                   onChange={changeContent}
                 />
               </SC.Item>
-              <SC.Item></SC.Item>
+              <SC.Item>
+                <SC.Title>是否跳转:</SC.Title>
+                <Switch onChange={setCanHref} checked={props.canHref} />
+              </SC.Item>
+              {props.canHref && (
+                <SC.Item>
+                  <SC.Title>跳转链接:</SC.Title>
+                  <Input value={props.hrefUrl} onChange={changeHrefUrl} />
+                </SC.Item>
+              )}
             </SC.Content>
           </Panel>
           <Panel header="外边距" key="2" className="site-collapse-custom-panel">
@@ -179,7 +205,7 @@ function TextConfig() {
               <SC.Item>
                 <SC.Title>左边距:</SC.Title>
                 <Slider
-                  max={40}
+                  max={500}
                   value={dataFilter("marginLeft")}
                   onChange={changeLeft}
                 />
@@ -187,7 +213,7 @@ function TextConfig() {
               <SC.Item>
                 <SC.Title>右边距:</SC.Title>
                 <Slider
-                  max={40}
+                  max={500}
                   value={dataFilter("marginRight")}
                   onChange={changeRight}
                 />

@@ -15,7 +15,6 @@ function DividerConfig() {
   };
 
   const changeFontPosition = ({ target: { value } }) => {
-    console.log("value", value);
     store.setProps(store.activeComponent, {
       ...props,
       orientation: value,

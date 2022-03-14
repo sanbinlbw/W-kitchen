@@ -11,7 +11,7 @@ import { Rnd } from "react-rnd";
 const resizeMap = {
   "W-Container": {
     bottom: true,
-    bottomLeft: true,
+    bottomLeft: false,
     bottomRight: true,
     left: false,
     right: true,
@@ -23,6 +23,16 @@ const resizeMap = {
   "W-Text": {
     bottom: true,
     bottomLeft: false,
+    bottomRight: true,
+    left: false,
+    right: true,
+    top: false,
+    topLeft: false,
+    topRight: false,
+  },
+  "W-Image": {
+    bottom: true,
+    bottomLeft: true,
     bottomRight: true,
     left: false,
     right: true,
