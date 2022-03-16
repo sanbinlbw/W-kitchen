@@ -2,7 +2,7 @@ import React, { useRef } from "react";
 import { store } from "../mobx";
 import { observer } from "mobx-react-lite";
 import * as SC from "./style";
-import { configComponent } from "../config/config-component";
+import { configComponent } from "../configComponent/config-component";
 
 function KitchenConfig() {
   console.log("act", store.activeComponent);
