@@ -28,7 +28,7 @@ function Header() {
       </div>
       <div>
         <Button
-          href="http://localhost:3000/showPage"
+          href="/showPage"
           target="blank"
           onClick={setSchema}
         >
