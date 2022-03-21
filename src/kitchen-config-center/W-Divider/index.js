@@ -11,7 +11,7 @@ function DividerConfig() {
   const [isColor, setIsColor] = useState(false);
 
   const dataFilter = (value) => {
-    return props.style[value].substring(0, props.style[value].length - 2);
+    return props.style[value].substring(0, props.style[value].length - 2) * 10;
   };
 
   const changeFontPosition = ({ target: { value } }) => {
@@ -22,16 +22,20 @@ function DividerConfig() {
   };
 
   const changeTop = (value) => {
+    value = parseFloat(value) / 10;
+
     store.setProps(store.activeComponent, {
       ...props,
-      style: { ...props.style, marginTop: `${value}px` },
+      style: { ...props.style, marginTop: `${value}vh` },
     });
   };
 
   const changeBottom = (value) => {
+    value = parseFloat(value) / 10;
+
     store.setProps(store.activeComponent, {
       ...props,
-      style: { ...props.style, marginBottom: `${value}px` },
+      style: { ...props.style, marginBottom: `${value}vh` },
     });
   };
 

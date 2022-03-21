@@ -6,5 +6,5 @@ export const BuildCenter = styled.div`
 `;
 
 export const KitchenConfig = styled.div`
-  width: 20vw;
+  width: 400px;
 `;

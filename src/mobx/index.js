@@ -4,25 +4,28 @@ import { componentList } from "./componentList";
 export const store = makeAutoObservable({
   componentList,
   uniqueId: 1,
-  currentComponent: "",
-  activeComponent: "",
+  currentComponent: '',
+  activeComponent: '',
+  // 当前屏幕宽高度，自适应需要计算
+  screenWidth: 0,
+  screenHeight: 0,
   schema: {
-    type: "W-Container",
-    id: "root",
+    type: 'W-Container',
+    id: 'root',
     props: {
       style: {
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "flex-start",
-        alignItems: "flex-start",
-        width: "calc(88vw - 2px)",
-        height: "calc(88vh - 2px)",
-        paddingTop: "0px",
-        paddingBottom: "0px",
-        paddingLeft: "0vw",
-        paddingRight: "0vw",
-        background: "#fff",
-        overflowY: "auto",
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'flex-start',
+        alignItems: 'flex-start',
+        width: 'calc(88vw - 2px)',
+        height: 'calc(88vh - 2px)',
+        paddingTop: '0px',
+        paddingBottom: '0px',
+        paddingLeft: '0vw',
+        paddingRight: '0vw',
+        background: '#fff',
+        overflowY: 'auto',
       },
     },
     children: [],
@@ -32,6 +35,10 @@ export const store = makeAutoObservable({
   },
   setActiveComponent(id) {
     this.activeComponent = id;
+  },
+  setScreen(width, height) {
+    this.screenWidth = width;
+    this.screenHeight = height;
   },
   setProps(id, props) {
     this.schemaMap[id].props = props;
@@ -56,7 +63,7 @@ export const store = makeAutoObservable({
     );
     this.schemaMap[fId].children.splice(index, 1);
     delete this.schemaMap[this.activeComponent];
-    this.activeComponent = "";
+    this.activeComponent = '';
   },
   prevSchema() {
     const fId = this.schemaMap[this.activeComponent].fId;

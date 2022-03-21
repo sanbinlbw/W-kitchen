@@ -10,11 +10,11 @@ import ActiveComponent from "../ActiveComponent";
 const insideMap = ["W-Divider"];
 
 function Canvas({ config }) {
-  const { type, props, children, id, fId = "" } = toJS(config);
+  const { type, props, children, id, fId = '' } = toJS(config);
 
   useEffect(() => {
-    if (!("schemaMap" in store)) {
-      store.addItem("schemaMap", {
+    if (!('schemaMap' in store)) {
+      store.addItem('schemaMap', {
         root: store.schema,
       });
     }
@@ -58,6 +58,7 @@ function Canvas({ config }) {
       onClick={clickComponent}
       display={props.style.display}
       isInside={insideMap.includes(type)}
+      className="canvas"
     >
       {renderType[type](_props, children, id)}
     </SC.CanvasComponent>

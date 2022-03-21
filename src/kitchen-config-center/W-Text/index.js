@@ -16,7 +16,7 @@ function TextConfig() {
   const { props } = store.schemaMap[store.activeComponent];
 
   const dataFilter = (value) => {
-    return props.style[value].substring(0, props.style[value].length - 2);
+    return props.style[value].substring(0, props.style[value].length - 2) * 10;
   };
 
   const changeWidth = ({ target: { value } }) => {
@@ -69,41 +69,45 @@ function TextConfig() {
   };
 
   const changeTop = (value) => {
+    value = parseFloat(value) / 10;
     store.setProps(store.activeComponent, {
       ...props,
-      style: { ...props.style, marginTop: `${value}px` },
+      style: { ...props.style, marginTop: `${value}vh` },
     });
   };
 
   const changeBottom = (value) => {
+    value = parseFloat(value) / 10;
     store.setProps(store.activeComponent, {
       ...props,
-      style: { ...props.style, marginBottom: `${value}px` },
+      style: { ...props.style, marginBottom: `${value}vh` },
     });
   };
 
   const changeLeft = (value) => {
+    value = parseFloat(value) / 10;
     store.setProps(store.activeComponent, {
       ...props,
-      style: { ...props.style, marginLeft: `${value}px` },
+      style: { ...props.style, marginLeft: `${value}vw` },
     });
   };
 
   const changeRight = (value) => {
+    value = parseFloat(value) / 10;
     store.setProps(store.activeComponent, {
       ...props,
-      style: { ...props.style, marginRight: `${value}px` },
+      style: { ...props.style, marginRight: `${value}vw` },
     });
   };
 
   const baseRender = () => {
     return (
       <div
-        style={{ height: "63vh", overflowY: "auto" }}
+        style={{ height: '63vh', overflowY: 'auto' }}
         onClick={() => setIsColor(false)}
       >
         <Collapse
-          defaultActiveKey={["1"]}
+          defaultActiveKey={['1']}
           expandIcon={({ isActive }) => (
             <CaretRightOutlined rotate={isActive ? 90 : 0} />
           )}
@@ -121,7 +125,7 @@ function TextConfig() {
                 <Input
                   value={props.style.width}
                   onChange={changeWidth}
-                  style={{ width: "100px" }}
+                  style={{ width: '200px' }}
                 />
               </SC.Item>
               <SC.Item>
@@ -129,7 +133,7 @@ function TextConfig() {
                 <Slider
                   min={12}
                   max={50}
-                  value={dataFilter("fontSize")}
+                  value={dataFilter('fontSize')}
                   onChange={changeFontSize}
                 />
               </SC.Item>
@@ -153,7 +157,7 @@ function TextConfig() {
                 />
                 {isColor && (
                   <div
-                    style={{ position: "absolute", zIndex: 2 }}
+                    style={{ position: 'absolute', zIndex: 2 }}
                     onClick={(ev) => ev.stopPropagation()}
                   >
                     <ChromePicker
@@ -190,7 +194,7 @@ function TextConfig() {
                 <SC.Title>上边距:</SC.Title>
                 <Slider
                   max={500}
-                  value={dataFilter("marginTop")}
+                  value={dataFilter('marginTop')}
                   onChange={changeTop}
                 />
               </SC.Item>
@@ -198,7 +202,7 @@ function TextConfig() {
                 <SC.Title>下边距:</SC.Title>
                 <Slider
                   max={500}
-                  value={dataFilter("marginBottom")}
+                  value={dataFilter('marginBottom')}
                   onChange={changeBottom}
                 />
               </SC.Item>
@@ -206,7 +210,7 @@ function TextConfig() {
                 <SC.Title>左边距:</SC.Title>
                 <Slider
                   max={500}
-                  value={dataFilter("marginLeft")}
+                  value={dataFilter('marginLeft')}
                   onChange={changeLeft}
                 />
               </SC.Item>
@@ -214,7 +218,7 @@ function TextConfig() {
                 <SC.Title>右边距:</SC.Title>
                 <Slider
                   max={500}
-                  value={dataFilter("marginRight")}
+                  value={dataFilter('marginRight')}
                   onChange={changeRight}
                 />
               </SC.Item>

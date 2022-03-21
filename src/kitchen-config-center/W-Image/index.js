@@ -15,7 +15,7 @@ function ImageConfig() {
   const { props } = store.schemaMap[store.activeComponent];
 
   const dataFilter = (value) => {
-    return props.style[value].substring(0, props.style[value].length - 2);
+    return props.style[value].substring(0, props.style[value].length - 2) * 10;
   };
   const changeWidth = ({ target: { value } }) => {
     store.setProps(store.activeComponent, {
@@ -74,58 +74,65 @@ function ImageConfig() {
   };
 
   const changeTop = (value) => {
+    value = parseFloat(value) / 10;
     store.setProps(store.activeComponent, {
       ...props,
-      style: { ...props.style, marginTop: `${value}px` },
+      style: { ...props.style, marginTop: `${value}vh` },
     });
   };
 
   const changeBottom = (value) => {
+    value = parseFloat(value) / 10;
     store.setProps(store.activeComponent, {
       ...props,
-      style: { ...props.style, marginBottom: `${value}px` },
+      style: { ...props.style, marginBottom: `${value}vh` },
     });
   };
 
   const changeLeft = (value) => {
+    value = parseFloat(value) / 10;
     store.setProps(store.activeComponent, {
       ...props,
-      style: { ...props.style, marginLeft: `${value}px` },
+      style: { ...props.style, marginLeft: `${value}vw` },
     });
   };
 
   const changeRight = (value) => {
+    value = parseFloat(value) / 10;
     store.setProps(store.activeComponent, {
       ...props,
-      style: { ...props.style, marginRight: `${value}px` },
+      style: { ...props.style, marginRight: `${value}vw` },
     });
   };
 
   const changePaddingLeft = (value) => {
+    value = parseFloat(value) / 10;
     store.setProps(store.activeComponent, {
       ...props,
-      style: { ...props.style, paddingLeft: `${value}px` },
+      style: { ...props.style, paddingLeft: `${value}vw` },
     });
   };
 
   const changePaddingRight = (value) => {
     store.setProps(store.activeComponent, {
       ...props,
-      style: { ...props.style, paddingRight: `${value}px` },
+      style: { ...props.style, paddingRight: `${value}vw` },
     });
   };
 
   const changePaddingTop = (value) => {
+    value = parseFloat(value) / 10;
     store.setProps(store.activeComponent, {
       ...props,
-      style: { ...props.style, paddingTop: `${value}px` },
+      style: { ...props.style, paddingTop: `${value}vh` },
     });
   };
 
   const changePaddingBottom = (value) => {
+    value = parseFloat(value) / 10;
     store.setProps(store.activeComponent, {
       ...props,
-      style: { ...props.style, paddingBottom: `${value}px` },
+      style: { ...props.style, paddingBottom: `${value}vh` },
     });
   };
 
@@ -152,11 +159,11 @@ function ImageConfig() {
   const baseRender = () => {
     return (
       <div
-        style={{ height: "63vh", overflowY: "auto" }}
+        style={{ height: '63vh', overflowY: 'auto' }}
         onClick={() => setBorderColor(false)}
       >
         <Collapse
-          defaultActiveKey={["1"]}
+          defaultActiveKey={['1']}
           expandIcon={({ isActive }) => (
             <CaretRightOutlined rotate={isActive ? 90 : 0} />
           )}
@@ -164,7 +171,7 @@ function ImageConfig() {
           className="site-collapse-custom-collapse"
         >
           {/* 根结点不展示大小控制 */}
-          {store.activeComponent !== "root" && (
+          {store.activeComponent !== 'root' && (
             <Panel
               header="组件外观"
               key="1"
@@ -176,7 +183,7 @@ function ImageConfig() {
                   <Input
                     value={props.style.width}
                     onChange={changeWidth}
-                    style={{ width: "100px" }}
+                    style={{ width: '200px' }}
                   />
                 </SC.Item>
                 <SC.Item>
@@ -184,28 +191,28 @@ function ImageConfig() {
                   <Input
                     value={props.style.height}
                     onChange={changeHeight}
-                    style={{ width: "100px" }}
+                    style={{ width: '200px' }}
                   />
                 </SC.Item>
                 <SC.Item>
                   <SC.Title>椭圆度:</SC.Title>
                   <Slider
                     max={500}
-                    value={dataFilter("borderRadius")}
+                    value={dataFilter('borderRadius')}
                     onChange={changeRadius}
                   />
                 </SC.Item>
-                {store.activeComponent !== "root" && (
+                {store.activeComponent !== 'root' && (
                   <SC.Item>
                     <SC.Title>边框大小:</SC.Title>
                     <Slider
                       max={10}
-                      value={dataFilter("borderWidth")}
+                      value={dataFilter('borderWidth')}
                       onChange={changeBorderWidth}
                     />
                   </SC.Item>
                 )}
-                {store.activeComponent !== "root" && (
+                {store.activeComponent !== 'root' && (
                   <SC.Item>
                     <SC.Title>边框颜色:</SC.Title>
                     <SC.Color
@@ -217,7 +224,7 @@ function ImageConfig() {
                     />
                     {isBorderColor && (
                       <div
-                        style={{ position: "absolute", zIndex: 2 }}
+                        style={{ position: 'absolute', zIndex: 2 }}
                         onClick={(ev) => ev.stopPropagation()}
                       >
                         <ChromePicker
@@ -248,7 +255,7 @@ function ImageConfig() {
               </SC.Content>
             </Panel>
           )}
-          {store.activeComponent !== "root" && (
+          {store.activeComponent !== 'root' && (
             <Panel
               header="外边距"
               key="2"
@@ -259,7 +266,7 @@ function ImageConfig() {
                   <SC.Title>上边距:</SC.Title>
                   <Slider
                     max={500}
-                    value={dataFilter("marginTop")}
+                    value={dataFilter('marginTop')}
                     onChange={changeTop}
                   />
                 </SC.Item>
@@ -267,7 +274,7 @@ function ImageConfig() {
                   <SC.Title>下边距:</SC.Title>
                   <Slider
                     max={500}
-                    value={dataFilter("marginBottom")}
+                    value={dataFilter('marginBottom')}
                     onChange={changeBottom}
                   />
                 </SC.Item>
@@ -275,7 +282,7 @@ function ImageConfig() {
                   <SC.Title>左边距:</SC.Title>
                   <Slider
                     max={500}
-                    value={dataFilter("marginLeft")}
+                    value={dataFilter('marginLeft')}
                     onChange={changeLeft}
                   />
                 </SC.Item>
@@ -283,7 +290,7 @@ function ImageConfig() {
                   <SC.Title>右边距:</SC.Title>
                   <Slider
                     max={500}
-                    value={dataFilter("marginRight")}
+                    value={dataFilter('marginRight')}
                     onChange={changeRight}
                   />
                 </SC.Item>
@@ -296,7 +303,7 @@ function ImageConfig() {
                 <SC.Title>上内距:</SC.Title>
                 <Slider
                   max={500}
-                  value={dataFilter("paddingTop")}
+                  value={dataFilter('paddingTop')}
                   onChange={changePaddingTop}
                 />
               </SC.Item>
@@ -304,7 +311,7 @@ function ImageConfig() {
                 <SC.Title>下内距:</SC.Title>
                 <Slider
                   max={500}
-                  value={dataFilter("paddingBottom")}
+                  value={dataFilter('paddingBottom')}
                   onChange={changePaddingBottom}
                 />
               </SC.Item>
@@ -312,7 +319,7 @@ function ImageConfig() {
                 <SC.Title>左内距:</SC.Title>
                 <Slider
                   max={500}
-                  value={dataFilter("paddingLeft")}
+                  value={dataFilter('paddingLeft')}
                   onChange={changePaddingLeft}
                 />
               </SC.Item>
@@ -320,7 +327,7 @@ function ImageConfig() {
                 <SC.Title>右内距:</SC.Title>
                 <Slider
                   max={500}
-                  value={dataFilter("paddingRight")}
+                  value={dataFilter('paddingRight')}
                   onChange={changePaddingRight}
                 />
               </SC.Item>
@@ -342,7 +349,7 @@ function ImageConfig() {
                   <Radio.Button value="row">横轴</Radio.Button>
                 </Radio.Group>
               </SC.Item>
-              {store.activeComponent !== "root" && (
+              {store.activeComponent !== 'root' && (
                 <SC.Item>
                   <SC.Title>主轴:</SC.Title>
                   <Radio.Group
@@ -355,7 +362,7 @@ function ImageConfig() {
                   </Radio.Group>
                 </SC.Item>
               )}
-              {store.activeComponent !== "root" && (
+              {store.activeComponent !== 'root' && (
                 <SC.Item>
                   <SC.Title>纵轴:</SC.Title>
                   <Radio.Group

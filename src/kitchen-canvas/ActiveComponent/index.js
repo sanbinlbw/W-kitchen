@@ -9,7 +9,7 @@ import { store } from "../../mobx";
 import { Rnd } from "react-rnd";
 
 const resizeMap = {
-  "W-Container": {
+  'W-Container': {
     bottom: true,
     bottomLeft: false,
     bottomRight: true,
@@ -19,18 +19,18 @@ const resizeMap = {
     topLeft: false,
     topRight: false,
   },
-  "W-Divider": false,
-  "W-Text": {
-    bottom: true,
+  'W-Divider': false,
+  'W-Text': {
+    bottom: false,
     bottomLeft: false,
-    bottomRight: true,
+    bottomRight: false,
     left: false,
     right: true,
     top: false,
     topLeft: false,
     topRight: false,
   },
-  "W-Image": {
+  'W-Image': {
     bottom: true,
     bottomLeft: true,
     bottomRight: true,
@@ -65,19 +65,55 @@ function ActiveComponent(props) {
   // 拉长时更新组件
   const changeItem = (width, height) => {
     console.log(width, height);
-    store.setProps(store.activeComponent, {
-      ..._props,
-      style: {
-        ..._props.style,
-        width,
-        height,
-      },
-    });
+    // 计算后的自适应宽度
+    const _width =
+      (parseInt(width.substring(0, width.length - 2)) / store.screenWidth) * 88;
+    const _height =
+      height &&
+      (parseInt(height.substring(0, height.length - 2)) / store.screenHeight) *
+        88;
+    if (width && height) {
+      store.setProps(store.activeComponent, {
+        ..._props,
+        style: {
+          ..._props.style,
+          width: `${_width}vw`,
+          height: `${_height}vh`,
+        },
+      });
+    } else {
+      store.setProps(store.activeComponent, {
+        ..._props,
+        style: {
+          ..._props.style,
+          width: `${_width}vw`,
+        },
+      });
+    }
   };
 
-  const dataFilter = (value) => {
-    if (!_props.style[value]) return "";
-    return _props.style[value].substring(0, _props.style[value].length - 2);
+  const widthFilter = (value) => {
+    if (!_props.style[value]) return '';
+    // 将vw换算为px
+    const data =
+      (parseFloat(
+        _props.style[value].substring(0, _props.style[value].length - 2)
+      ) /
+        88) *
+      store.screenWidth;
+    return data;
+  };
+
+  const heightFilter = (value) => {
+    if (!_props.style[value]) return '';
+    // 将vw换算为px
+    const data =
+      (parseFloat(
+        _props.style[value].substring(0, _props.style[value].length - 2)
+      ) /
+        88) *
+      store.screenHeight;
+    return data;
   };
 
   // 计算长宽
@@ -85,23 +121,23 @@ function ActiveComponent(props) {
     if (insideMap.includes(type)) {
       return data;
     } else if (_props.style[key]) {
-      if (key === "width") {
+      if (key === 'width') {
         return `${
-          parseInt(dataFilter(key)) +
+          widthFilter(key) +
           2 +
-          parseInt(dataFilter("marginLeft")) +
-          parseInt(dataFilter("marginRight"))
+          widthFilter('marginLeft') +
+          widthFilter('marginRight')
         }px`;
-      } else if (key === "height") {
+      } else if (key === 'height') {
         return `${
-          parseInt(dataFilter(key)) +
+          heightFilter(key) +
           2 +
-          parseInt(dataFilter("marginTop")) +
-          parseInt(dataFilter("marginBottom"))
+          heightFilter('marginTop') +
+          heightFilter('marginBottom')
         }px`;
       }
     } else {
-      return "";
+      return '';
     }
   };
   return (
@@ -114,23 +150,22 @@ function ActiveComponent(props) {
     >
       <Rnd
         style={{
-          position: "static",
-          cursor: "default",
-          border: "1px dashed #155bd4",
+          position: 'static',
+          cursor: 'default',
+          border: '1px dashed #155bd4',
         }}
         size={{
-          width: computeData(_props.style.width, "width"),
-          height: computeData(_props.style.height, "height"),
+          width: computeData(_props.style.width, 'width'),
+          height: computeData(_props.style.height, 'height'),
         }}
         disableDragging={true}
         enableResizing={
-          store.activeComponent === "root"
+          store.activeComponent === 'root'
             ? false
             : resizeMap[store.schemaMap[store.activeComponent].type]
         }
         // enableResizing={false}
         onResize={(e, direction, ref, delta, position) => {
-          console.log(ref);
           if (_props.style.height) {
             changeItem(ref.style.width, ref.style.height);
           } else {
@@ -140,12 +175,12 @@ function ActiveComponent(props) {
       >
         {children}
       </Rnd>
-      {store.activeComponent !== "root" && (
+      {store.activeComponent !== 'root' && (
         <SC.OperatingComponent>
-          <ArrowLeftOutlined style={{ cursor: "pointer" }} onClick={prevItem} />
-          <DeleteOutlined style={{ cursor: "pointer" }} onClick={deleteItem} />
+          <ArrowLeftOutlined style={{ cursor: 'pointer' }} onClick={prevItem} />
+          <DeleteOutlined style={{ cursor: 'pointer' }} onClick={deleteItem} />
           <ArrowRightOutlined
-            style={{ cursor: "pointer" }}
+            style={{ cursor: 'pointer' }}
             onClick={nextItem}
           />
         </SC.OperatingComponent>
