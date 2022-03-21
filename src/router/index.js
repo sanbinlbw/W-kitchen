@@ -11,7 +11,7 @@ function Routes() {
         {routesMap.map((route, index) => (
           <RouteComponent {...route} key={index} />
         ))}
-        <Redirect from="/" to="/home/BuildCenter" />
+        <Redirect from="/" to="/login" />
       </Switch>
     </Router>
   );

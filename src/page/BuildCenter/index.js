@@ -18,7 +18,7 @@ function BuildCenter() {
         enableResizing={false}
         disableDragging={showConfig}
       >
-        <SC.KitchenConfig>
+        <SC.KitchenConfig className="kitchenConfig">
           <a
             onClick={(e) => {
               e.preventDefault();

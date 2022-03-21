@@ -23,7 +23,7 @@ function ItemRender(item, index) {
 
 function KitchenComponent() {
   return (
-    <SC.Component>
+    <SC.Component className="kitchenComponent">
       {toJS(store.componentList).map((item, index) => {
         return ItemRender(item, index);
       })}

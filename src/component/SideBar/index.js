@@ -67,7 +67,7 @@ function SideBar(props) {
       onVisibleChange={() => setMenuVisible(!menuVisible)}
       visible={menuVisible}
     >
-      <SC.Logo />
+      <SC.Logo className="indexLogo" />
     </Dropdown>
   );
 }

@@ -16,11 +16,11 @@ function Header() {
     <SC.Header>
       <div
         style={{
-          display: "flex",
-          flexDirection: "row",
-          alignItems: "center",
-          height: "60px",
-          marginLeft: "1vw",
+          display: 'flex',
+          flexDirection: 'row',
+          alignItems: 'center',
+          height: '60px',
+          marginLeft: '1vw',
         }}
       >
         <SideBar />
@@ -31,10 +31,15 @@ function Header() {
           href="/showPage"
           target="blank"
           onClick={setSchema}
+          className="preview"
         >
           预览
         </Button>
-        <Button type="primary" onClick={() => setSchemaDialog(true)}>
+        <Button
+          type="primary"
+          onClick={() => setSchemaDialog(true)}
+          className="schema"
+        >
           Schema
         </Button>
         <Button>退出</Button>

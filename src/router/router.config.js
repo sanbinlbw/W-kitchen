@@ -4,36 +4,42 @@ import BuildCenter from "../page/BuildCenter";
 import MaterialSelect from "../page/MaterialSelect";
 import PageLibrary from "../page/PageLibrary";
 import ShowPage from "../RenderPage/ShowPage";
+import Login from '../page/Login';
 
 export const routesMap = [
   {
-    path: "/home",
+    path: '/login',
+    component: Login,
+    exact: true,
+  },
+  {
+    path: '/home',
     component: Index,
     childrenRoutes: [
       {
-        path: "/home/stencil",
+        path: '/home/stencil',
         component: Stencil,
         exact: true,
       },
       {
-        path: "/home/pageLibrary",
+        path: '/home/pageLibrary',
         component: PageLibrary,
         exact: true,
       },
       {
-        path: "/home/materialSelect",
+        path: '/home/materialSelect',
         component: MaterialSelect,
         exact: true,
       },
       {
-        path: "/home/buildCenter",
+        path: '/home/buildCenter',
         component: BuildCenter,
         exact: true,
       },
     ],
   },
   {
-    path: "/showPage",
+    path: '/showPage',
     component: ShowPage,
     childrenRoutes: [],
   },
