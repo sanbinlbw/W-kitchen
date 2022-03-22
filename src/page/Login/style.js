@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import indexBackground from '../../assets/image/indexBackground.jpg';
+import indexBackground from '../../assets/image/indexBackground.webp';
 
 export const Background = styled.div`
   width: 100vw;
