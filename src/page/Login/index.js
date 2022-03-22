@@ -1,12 +1,27 @@
 import React from 'react';
 import * as SC from './style';
 import { useHistory } from 'react-router-dom';
+import LoginPage from '../../component/LoginPage';
 
 function Login() {
   let history = useHistory();
 
   return (
     <SC.Background>
+      <div
+        style={{
+          zIndex: 10,
+          position: 'fixed',
+          width: '100vw',
+          height: '100vh',
+          display: 'grid',
+          justifyContent: 'center',
+          alignContent: 'center',
+        }}
+      >
+        <LoginPage />
+      </div>
+
       <SC.Content>
         <SC.TitleOne>W-Kitchen</SC.TitleOne>
         <SC.TitleTwo>一个可视化拖拽的创意平台</SC.TitleTwo>
