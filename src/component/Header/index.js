@@ -4,6 +4,7 @@ import ReactJson from "react-json-view";
 
 import * as SC from "./style";
 import { store } from "../../mobx";
+import { setSchemaData } from '../../request';
 import SideBar from "../SideBar";
 
 function Header() {
@@ -42,7 +43,13 @@ function Header() {
         >
           Schema
         </Button>
-        <Button>退出</Button>
+        <Button
+          onClick={() =>
+            setSchemaData(0, 'test', store.schema, store.schemaMap)
+          }
+        >
+          保存
+        </Button>
         <Modal
           title="Schema"
           visible={schemaDialog}

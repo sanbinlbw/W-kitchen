@@ -133,7 +133,7 @@ function TextConfig() {
                 <Slider
                   min={12}
                   max={50}
-                  value={dataFilter('fontSize')}
+                  value={dataFilter('fontSize') / 10}
                   onChange={changeFontSize}
                 />
               </SC.Item>
@@ -150,7 +150,7 @@ function TextConfig() {
                 <SC.Title>字体颜色:</SC.Title>
                 <SC.Color
                   color={props.style.color}
-                  onClick={(ev) => {
+                  onClick={ev => {
                     ev.stopPropagation();
                     setIsColor(true);
                   }}
@@ -158,7 +158,7 @@ function TextConfig() {
                 {isColor && (
                   <div
                     style={{ position: 'absolute', zIndex: 2 }}
-                    onClick={(ev) => ev.stopPropagation()}
+                    onClick={ev => ev.stopPropagation()}
                   >
                     <ChromePicker
                       color={props.style.color}

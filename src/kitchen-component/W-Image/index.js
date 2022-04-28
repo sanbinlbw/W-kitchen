@@ -24,7 +24,7 @@ function WImage(props) {
       if (monitor.didDrop()) return;
       const _config = { ...item.item.config };
       // 每个组件设置一个唯一id
-      _config.id = store.uniqueId;
+      _config.id = new Date().getTime();
       // 组件设置父id-代表它在fId的children下
       _config.fId = id;
       store.addSchema(id, _config);

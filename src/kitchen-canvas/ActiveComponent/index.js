@@ -8,6 +8,7 @@ import {
 import { store } from "../../mobx";
 import { Rnd } from "react-rnd";
 
+// 控制可拖拽的方向
 const resizeMap = {
   'W-Container': {
     bottom: true,
@@ -50,6 +51,7 @@ function ActiveComponent(props) {
   const deleteItem = (ev) => {
     ev.stopPropagation();
     store.deleteSchema();
+    console.log(store.schema);
   };
 
   const prevItem = (ev) => {
@@ -73,20 +75,66 @@ function ActiveComponent(props) {
       (parseInt(height.substring(0, height.length - 2)) / store.screenHeight) *
         88;
     if (width && height) {
+      const _marginLeft = parseInt(
+        store.schemaMap[store.activeComponent].props.style.marginLeft.substring(
+          0,
+          store.schemaMap[store.activeComponent].props.style.marginLeft.length -
+            2
+        )
+      );
+      const _marginRight = parseInt(
+        store.schemaMap[
+          store.activeComponent
+        ].props.style.marginRight.substring(
+          0,
+          store.schemaMap[store.activeComponent].props.style.marginRight
+            .length - 2
+        )
+      );
+      const _marginTop = parseInt(
+        store.schemaMap[store.activeComponent].props.style.marginTop.substring(
+          0,
+          store.schemaMap[store.activeComponent].props.style.marginTop.length -
+            2
+        )
+      );
+      const _marginBottom = parseInt(
+        store.schemaMap[
+          store.activeComponent
+        ].props.style.marginBottom.substring(
+          0,
+          store.schemaMap[store.activeComponent].props.style.marginBottom
+            .length - 2
+        )
+      );
       store.setProps(store.activeComponent, {
         ..._props,
         style: {
           ..._props.style,
-          width: `${_width}vw`,
-          height: `${_height}vh`,
+          width: `${_width - _marginLeft - _marginRight}vw`,
+          height: `${_height - _marginTop - _marginBottom}vh`,
         },
       });
     } else {
+      const _marginLeft = parseInt(
+        store.schemaMap[store.activeComponent].props.style.marginLeft.substring(
+          0,
+          store.schemaMap[store.activeComponent].props.style.marginLeft.length -
+            2
+        )
+      );
+      const _marginRight = parseInt(
+        store.schemaMap[store.activeComponent].props.style.marginLeft.substring(
+          0,
+          store.schemaMap[store.activeComponent].props.style.marginRight
+            .length - 2
+        )
+      );
       store.setProps(store.activeComponent, {
         ..._props,
         style: {
           ..._props.style,
-          width: `${_width}vw`,
+          width: `${_width - _marginLeft - _marginRight}vw`,
         },
       });
     }

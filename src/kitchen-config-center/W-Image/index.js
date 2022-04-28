@@ -198,7 +198,7 @@ function ImageConfig() {
                   <SC.Title>椭圆度:</SC.Title>
                   <Slider
                     max={500}
-                    value={dataFilter('borderRadius')}
+                    value={dataFilter('borderRadius') / 10}
                     onChange={changeRadius}
                   />
                 </SC.Item>
@@ -207,7 +207,7 @@ function ImageConfig() {
                     <SC.Title>边框大小:</SC.Title>
                     <Slider
                       max={10}
-                      value={dataFilter('borderWidth')}
+                      value={dataFilter('borderWidth') / 10}
                       onChange={changeBorderWidth}
                     />
                   </SC.Item>
@@ -217,7 +217,7 @@ function ImageConfig() {
                     <SC.Title>边框颜色:</SC.Title>
                     <SC.Color
                       color={props.style.borderColor}
-                      onClick={(ev) => {
+                      onClick={ev => {
                         ev.stopPropagation();
                         setBorderColor(true);
                       }}
@@ -225,7 +225,7 @@ function ImageConfig() {
                     {isBorderColor && (
                       <div
                         style={{ position: 'absolute', zIndex: 2 }}
-                        onClick={(ev) => ev.stopPropagation()}
+                        onClick={ev => ev.stopPropagation()}
                       >
                         <ChromePicker
                           color={props.style.borderColor}
@@ -364,7 +364,7 @@ function ImageConfig() {
               )}
               {store.activeComponent !== 'root' && (
                 <SC.Item>
-                  <SC.Title>纵轴:</SC.Title>
+                  <SC.Title>副轴:</SC.Title>
                   <Radio.Group
                     onChange={changeAlign}
                     value={props.style.alignItems}

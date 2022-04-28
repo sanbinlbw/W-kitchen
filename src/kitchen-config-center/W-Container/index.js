@@ -203,7 +203,7 @@ function ContainerConfig() {
                   <SC.Title>椭圆度:</SC.Title>
                   <Slider
                     max={500}
-                    value={dataFilter('borderRadius')}
+                    value={dataFilter('borderRadius') / 10}
                     onChange={changeRadius}
                   />
                 </SC.Item>
@@ -211,7 +211,7 @@ function ContainerConfig() {
                   <SC.Title>背景颜色:</SC.Title>
                   <SC.Color
                     color={props.style.backgroundColor}
-                    onClick={(ev) => {
+                    onClick={ev => {
                       ev.stopPropagation();
                       setIsColor(true);
                     }}
@@ -219,7 +219,7 @@ function ContainerConfig() {
                   {isColor && (
                     <div
                       style={{ position: 'absolute', zIndex: 2 }}
-                      onClick={(ev) => ev.stopPropagation()}
+                      onClick={ev => ev.stopPropagation()}
                     >
                       <ChromePicker
                         color={props.style.backgroundColor}
@@ -233,7 +233,7 @@ function ContainerConfig() {
                     <SC.Title>边框大小:</SC.Title>
                     <Slider
                       max={10}
-                      value={dataFilter('borderWidth')}
+                      value={dataFilter('borderWidth') / 10}
                       onChange={changeBorderWidth}
                     />
                   </SC.Item>
@@ -243,7 +243,7 @@ function ContainerConfig() {
                     <SC.Title>边框颜色:</SC.Title>
                     <SC.Color
                       color={props.style.borderColor}
-                      onClick={(ev) => {
+                      onClick={ev => {
                         ev.stopPropagation();
                         setBorderColor(true);
                       }}
@@ -251,7 +251,7 @@ function ContainerConfig() {
                     {isBorderColor && (
                       <div
                         style={{ position: 'absolute', zIndex: 2 }}
-                        onClick={(ev) => ev.stopPropagation()}
+                        onClick={ev => ev.stopPropagation()}
                       >
                         <ChromePicker
                           color={props.style.borderColor}
@@ -383,7 +383,7 @@ function ContainerConfig() {
               )}
               {store.activeComponent !== 'root' && (
                 <SC.Item>
-                  <SC.Title>纵轴:</SC.Title>
+                  <SC.Title>副轴:</SC.Title>
                   <Radio.Group
                     onChange={changeAlign}
                     value={props.style.alignItems}

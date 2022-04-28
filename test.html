@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    const levelOrder = function(root) {
+    if(!root) return []
+    let res = {}
+    let queue = [root]
+    while(queue.length) {
+        let len = queue.length
+        for(let i = 0;i < len;i++) {
+            let node = queue.shift()
+            res[node.id] = node
+            for(let i of node.children) {
+              queue.push(i)
+            }
+        }
+    }
+    return res
+  };
+
+  const obj = {
+    "type": "W-Container",
+    "id": "root",
+    "props": {
+        "style": {
+            "display": "flex",
+            "flexDirection": "column",
+            "justifyContent": "flex-start",
+            "alignItems": "flex-start",
+            "width": "88vw",
+            "paddingTop": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0vw",
+            "paddingRight": "0vw",
+            "background": "#fff",
+            "transform": "scale(1.14)",
+            "transformOrigin": "top left"
+        }
+    },
+    "children": [
+        {
+            "type": "W-Container",
+            "props": {
+                "style": {
+                    "display": "flex",
+                    "flexDirection": "column",
+                    "justifyContent": "flex-start",
+                    "alignItems": "flex-start",
+                    "width": "28.069374425314688vw",
+                    "height": "38.8088376560999vh",
+                    "borderRadius": "0px",
+                    "borderWidth": "0px",
+                    "borderStyle": "solid",
+                    "borderColor": "#D4D4D4",
+                    "marginTop": "0vh",
+                    "marginBottom": "0vh",
+                    "marginLeft": "0vw",
+                    "marginRight": "0vw",
+                    "paddingTop": "0vh",
+                    "paddingBottom": "0vh",
+                    "paddingLeft": "0vw",
+                    "paddingRight": "0vw",
+                    "backgroundColor": "#8F4B2E"
+                },
+                "canHref": false,
+                "hrefUrl": "http://www.baidu.com"
+            },
+            "children": [
+                {
+                    "type": "W-Container",
+                    "props": {
+                        "style": {
+                            "display": "flex",
+                            "flexDirection": "column",
+                            "justifyContent": "flex-start",
+                            "alignItems": "flex-start",
+                            "width": "10vw",
+                            "height": "20vh",
+                            "borderRadius": "0px",
+                            "borderWidth": "0px",
+                            "borderStyle": "solid",
+                            "borderColor": "#D4D4D4",
+                            "marginTop": "0vh",
+                            "marginBottom": "0vh",
+                            "marginLeft": "0vw",
+                            "marginRight": "0vw",
+                            "paddingTop": "0vh",
+                            "paddingBottom": "0vh",
+                            "paddingLeft": "0vw",
+                            "paddingRight": "0vw",
+                            "backgroundColor": "#bd917f"
+                        },
+                        "canHref": false,
+                        "hrefUrl": "http://www.baidu.com"
+                    },
+                    "children": [
+                        {
+                            "type": "W-Text",
+                            "props": {
+                                "style": {
+                                    "width": "3vw",
+                                    "display": "block",
+                                    "marginTop": "0vh",
+                                    "marginBottom": "0vh",
+                                    "marginLeft": "0vw",
+                                    "marginRight": "0vw",
+                                    "fontSize": "12px",
+                                    "fontWeight": 400,
+                                    "color": "#000",
+                                    "wordWrap": "break-word",
+                                    "wordBreak": "break-all"
+                                },
+                                "content": "content",
+                                "canHref": false,
+                                "hrefUrl": "http://www.baidu.com"
+                            },
+                            "children": [],
+                            "id": 1649730673646,
+                            "fId": 1649730661045
+                        }
+                    ],
+                    "id": 1649730661045,
+                    "fId": 1649730651408
+                }
+            ],
+            "id": 1649730651408,
+            "fId": "root"
+        },
+        {
+            "type": "W-Image",
+            "props": {
+                "style": {
+                    "display": "flex",
+                    "flexDirection": "column",
+                    "justifyContent": "flex-start",
+                    "alignItems": "flex-start",
+                    "width": "11.216588985066108vw",
+                    "height": "18.155619596541786vh",
+                    "borderRadius": "0px",
+                    "borderWidth": "0px",
+                    "borderStyle": "solid",
+                    "borderColor": "#D4D4D4",
+                    "marginTop": "0vh",
+                    "marginBottom": "0vh",
+                    "marginLeft": "0vw",
+                    "marginRight": "0vw",
+                    "paddingTop": "0vh",
+                    "paddingBottom": "0vh",
+                    "paddingLeft": "0vw",
+                    "paddingRight": "0vw",
+                    "background": "url(https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png)",
+                    "backgroundSize": "100%"
+                },
+                "canHref": false,
+                "hrefUrl": "http://www.baidu.com"
+            },
+            "children": [],
+            "id": 1649730655946,
+            "fId": "root"
+        }
+    ]
+}
+
+  console.log(levelOrder(obj));
+  </script>
+</body>
+</html>

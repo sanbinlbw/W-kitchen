@@ -7,7 +7,7 @@ function ShowPage() {
   schema.props.style.width = "88vw";
   delete schema.props.style.height;
   delete schema.props.style.overflowY;
-  schema.props.style.transform = "scale(1.14)";
+  schema.props.style.transform = 'scale(1.139)';
   schema.props.style.transformOrigin = "top left";
   return <RenderPage config={schema} />;
 }
